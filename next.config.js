@@ -2,9 +2,9 @@
 const nextConfig = {
   env: {
     NEXTAUTH_SECRET:"Instacertify",
-    NEXTAUTH_URL:"https://elegant-melba-dec3f8.netlify.app/",
+    NEXTAUTH_URL:"https://scchs-uat-4cll.vercel.app/",
     next:{
-      api_url:"https://elegant-melba-dec3f8.netlify.app/api/v1/"
+      api_url:"https://scchs-uat-4cll.vercel.app/api/v1/"
     },
     // "proxy": "https://admin.instacertify.com",
     server : {
