@@ -332,13 +332,22 @@ export default function events(pageProp) {
                                 </div>
 
                                 <div className="custom_drop">
-                                    <select value={timeframe} onChange={(e) => setTimeframe(e.target.value)} className="dropdown">
+                                    {/* <select value={timeframe} onChange={(e) => setTimeframe(e.target.value)} className="dropdown">
                                         <option>Timeframe</option>
-                                        {/* <option value="all">All</option> */}
                                         <option value="today">Today</option>
                                         <option value="thisWeek">This Week</option>
                                         <option value="thisMonth">This Month</option>
+                                    </select> */}
+                                    <select value={timeframe} onChange={(e) => setTimeframe(e.target.value)} className="dropdown">
+                                        <option value="">Timeframe</option>
+                                        <option value="within1Month">Within 1 month</option>
+                                        <option value="within3Months">Within 3 months</option>
+                                        <option value="within6Months">Within 6 months</option>
+                                        <option value="within12Months">Within 12 months</option>
+                                        <option value="upcoming">All Upcoming</option>
+                                        <option value="past">History of past event</option>
                                     </select>
+
                                 </div>
 
                             </div>
@@ -352,10 +361,27 @@ export default function events(pageProp) {
                                 </div>
                                 <span className="for-label">FOR:</span>
                                 <input value={searchInput}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            setSearchText(searchInput);
+                                        }
+                                    }}
                                     onChange={(e) => setSearchInput(e.target.value)} type="text" className="search-input" />
                                 <button onClick={() => setSearchText(searchInput)} className="search-button">
                                     <img width="28" src="https://res.cloudinary.com/dgif730br/image/upload/v1744279927/Mask_group_zicocm.png" alt="this is search image" />
                                 </button>
+                                {searchInput && (
+                                    <button
+                                        style={{ background: "red" }}
+                                        onClick={() => {
+                                            setSearchInput("");     // reset input field
+                                            setSearchText("");      // reset search result
+                                        }}
+                                        className="clear-button"
+                                    >
+                                        Clear
+                                    </button>
+                                )}
                             </div>
                         </div>
 
@@ -382,29 +408,68 @@ export default function events(pageProp) {
                             cards.filter(card => {
                                 const eventDate = new Date(card.date);
 
-                                if (timeframe === 'today') {
-                                    const today = new Date();
-                                    return eventDate.toDateString() === today.toDateString();
-                                }
+                                // if (timeframe === 'today') {
+                                //     const today = new Date();
+                                //     return eventDate.toDateString() === today.toDateString();
+                                // }
 
-                                if (timeframe === 'thisWeek') {
+                                // if (timeframe === 'thisWeek') {
+                                //     const now = new Date();
+                                //     const startOfWeek = new Date(now);
+                                //     startOfWeek.setDate(now.getDate() - now.getDay() + 1); // Monday
+
+                                //     const endOfWeek = new Date(startOfWeek);
+                                //     endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
+
+                                //     return eventDate >= startOfWeek && eventDate <= endOfWeek;
+                                // }
+
+                                // if (timeframe === 'thisMonth') {
+                                //     const now = new Date();
+                                //     return (
+                                //         eventDate.getMonth() === now.getMonth() &&
+                                //         eventDate.getFullYear() === now.getFullYear()
+                                //     );
+                                // }
+
+                                if (timeframe === 'within1Month') {
                                     const now = new Date();
-                                    const startOfWeek = new Date(now);
-                                    startOfWeek.setDate(now.getDate() - now.getDay() + 1); // Monday
-
-                                    const endOfWeek = new Date(startOfWeek);
-                                    endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
-
-                                    return eventDate >= startOfWeek && eventDate <= endOfWeek;
+                                    const oneMonthLater = new Date(now);
+                                    oneMonthLater.setMonth(now.getMonth() + 1);
+                                    return eventDate >= now && eventDate <= oneMonthLater;
                                 }
 
-                                if (timeframe === 'thisMonth') {
+                                if (timeframe === 'within3Months') {
                                     const now = new Date();
-                                    return (
-                                        eventDate.getMonth() === now.getMonth() &&
-                                        eventDate.getFullYear() === now.getFullYear()
-                                    );
+                                    const threeMonthsLater = new Date(now);
+                                    threeMonthsLater.setMonth(now.getMonth() + 3);
+                                    return eventDate >= now && eventDate <= threeMonthsLater;
                                 }
+
+                                if (timeframe === 'within6Months') {
+                                    const now = new Date();
+                                    const sixMonthsLater = new Date(now);
+                                    sixMonthsLater.setMonth(now.getMonth() + 6);
+                                    return eventDate >= now && eventDate <= sixMonthsLater;
+                                }
+
+                                if (timeframe === 'within12Months') {
+                                    const now = new Date();
+                                    const twelveMonthsLater = new Date(now);
+                                    twelveMonthsLater.setMonth(now.getMonth() + 12);
+                                    return eventDate >= now && eventDate <= twelveMonthsLater;
+                                }
+
+                                if (timeframe === 'upcoming') {
+                                    const now = new Date();
+                                    return eventDate >= now;
+                                }
+
+                                if (timeframe === 'past') {
+                                    const now = new Date();
+                                    return eventDate < now;
+                                }
+
 
                                 // =======for search==========
 
@@ -443,13 +508,13 @@ export default function events(pageProp) {
 
                                         <span>{formatTime(card?.start_time)} - {formatTime(card?.end_time)}</span>
                                     </div>
-                                  <Link href={`/eventdetail?id=${card?.slug}`}>  <img
+                                    <Link href={`/eventdetail?id=${card?.slug}`}>  <img
                                         src={`https://uat.scchs.co.in/backend/admin/images/event_management/events/${card?.images[0]}`}
                                         alt="Event"
                                         className="card-image"
                                     /></Link>
                                     <div className="card-content">
-                                      <Link style={{textDecoration:"none",color:"#000"}} href={`/eventdetail?id=${card?.slug}`}><h3>{card.title}</h3></Link>
+                                        <Link style={{ textDecoration: "none", color: "#000" }} href={`/eventdetail?id=${card?.slug}`}><h3>{card.title}</h3></Link>
                                         <p>{card.short_description}</p>
                                         <Link href={`/eventdetail?id=${card?.slug}`}>
                                             <button className="info-btn">

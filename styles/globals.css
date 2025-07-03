@@ -8725,6 +8725,22 @@ label {
   font-weight: 600;
   text-transform: capitalize;
 }
+.clear-button {
+  margin-left: 8px;
+  padding: 8px 16px;
+  background-color: rgba(171, 5, 53, 1);
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clear-button:hover {
+  background-color: #c62828;
+}
 
 
 /* Responsive Styles */
