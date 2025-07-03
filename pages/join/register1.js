@@ -997,6 +997,7 @@ export default function register1(pageProp) {
 
         if (isMemberCreation) {
             toast.success(result?.message || "Member created successfully!");
+            window.location.href = "/";
         } else {
             if (result.message?.email?.length > 0) {
                 toast.error(result.message.email[0]);

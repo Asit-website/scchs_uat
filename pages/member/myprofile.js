@@ -1154,16 +1154,16 @@ export default function myprofile(pageProp) {
 
 
     const handleRedirect = () => {
-        if (!selectedPlanId) return;
-        localStorage.setItem("selected_member_plan_id", selectedPlanId);
-        router.push("/join/register1");
-        // if (!selectedPlanId || validPlans.length === 0) {
-        //     alert("You have reached your maximum allowed members.");
-        //     return;
-        // }
-
+        // if (!selectedPlanId) return;
         // localStorage.setItem("selected_member_plan_id", selectedPlanId);
         // router.push("/join/register1");
+        if (!selectedPlanId || validPlans.length === 0) {
+            alert("You have reached your maximum allowed members.");
+            return;
+        }
+
+        localStorage.setItem("selected_member_plan_id", selectedPlanId);
+        router.push("/join/register1");
     };
 
     // if (validPlans.length === 0) return ;
@@ -1201,7 +1201,7 @@ export default function myprofile(pageProp) {
                         </button> */}
                     <div className="newsection1-wrapper">
                         <div className="newsection1-inner">
-                            {!onlySingleMemberPlans && (
+                            {!onlySingleMemberPlans   && validPlans.length>0 && (
                                 <select
                                     value={selectedPlanId}
                                     onChange={(e) => setSelectedPlanId(e.target.value)}
@@ -1218,7 +1218,8 @@ export default function myprofile(pageProp) {
                             <button
                                 onClick={handleRedirect}
                                 className="newsection1-button"
-                                disabled={onlySingleMemberPlans}
+                                // disabled={onlySingleMemberPlans}
+                                disabled={onlySingleMemberPlans || validPlans.length === 0 || !selectedPlanId}
                             >
                                 Add Member
                             </button>
