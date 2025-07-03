@@ -1,0 +1,60 @@
+@import "global-objects";
+
+.accordion{
+    width: 100%;
+    padding: 0 0 20px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #D9E0E6;
+
+    .accordionHead{
+        width: 100%;
+        display: flex;   
+        justify-content: space-between;
+        cursor: pointer;
+        margin: 0;
+        
+        h4{
+            color: #1F1F1F;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+            transition: all 0.35s;
+        }
+
+        svg{
+            width: 20px;
+            height: 20px;
+            transition: all 0.35s;
+            path{
+                fill: #000;
+            }
+        }
+
+    }
+
+    .accordionBody{
+        width: 100%;
+        padding: 20px 0 0 0;
+        display: none;
+        &.collapsed{
+            display: block;
+        }
+    }
+
+    &.isOpen{
+        .accordionHead{
+            h4{
+                color: $color_primary;
+            }
+            svg{
+                transform: rotate(180deg);
+                path{
+                    fill: $color_primary;
+                }
+            }
+        }
+    }
+
+}

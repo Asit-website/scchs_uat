@@ -1,0 +1,244 @@
+@import "global-objects";
+
+
+.productOption{
+    width: 100%;
+    margin: 0 0 32px 0;
+
+    .optionTitle{
+        display: block;
+        color:#1F1F1F;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-transform: uppercase;
+        margin: 0 0 16px 0;
+        small{
+            font-size: 16px;
+            color: $color_primary;
+            margin-left: 5px;
+        }
+    }
+
+    .optionWrapper{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        svg{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+
+        select{
+            width: 100%;
+            -webkit-appearance: none!important;
+            -moz-appearance: none!important;
+            background-color: #fff;
+            border-radius: 0;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);
+            background-position: 100% center;
+            background-repeat: no-repeat;
+            border-style: solid;
+            border-width: 1px;
+            border-color:#ccc;
+            color: #666;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: normal;
+            padding: 10px;
+            border-radius: 0;
+            cursor: pointer;
+            margin: 0;
+            outline: 0;
+            border-radius: 4px;
+        }
+
+        textarea{
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        > div {
+            width: 100%;
+            position: relative;
+            input{
+                height: 44px;
+            }
+        }
+
+        > div > input,
+        textarea,
+        input[type="text"],
+        input[type="number"],
+        input[type="date"]
+        {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            border-color: #ccc;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 4px;
+            color: #666;
+            display: block;
+            font-family: inherit;
+            font-size: 1rem;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            margin: 0;
+            padding: 10px;
+            transition: border-color .1s ease-out;
+            width: 100%;
+        }
+
+    }
+
+}
+
+
+.opRadioButtons{
+    width: 100%;
+
+    .optionWrapper{
+        width: 100%;
+        gap: 15px;
+        label{
+            width: 100%;
+            display: block;
+            transition: all 0.35s;
+            span{
+                display: inline-block;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
+
+    }
+}
+
+.opColor{
+    width: 100%;
+
+    .optionWrapper{
+        width: 100%;
+        gap: 15px;
+        align-items: center;
+        label{
+            input{ 
+                border: 0;
+                clip: rect(1px,1px,1px,1px);
+                height: 1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px; 
+                bottom: 0;
+                left: 0;
+            }
+
+            input:checked  + .colorMain{
+                border: 5px solid #fff;
+                box-shadow: 0px 0px 0px 2px #ccc;
+            }
+
+            input:checked  + .noneOption{
+                background: $color_primary;
+                color: #fff;
+                border-color: $color_primary;
+            }
+
+            .noneOption{
+                border: 1px solid #ccc;
+                padding: 5px;
+                color: #000;
+                cursor: pointer;
+            }
+
+            .colorMain{
+                position: relative;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                overflow: hidden;
+                cursor: pointer;
+                display: flex;
+                border: 1px solid #ccc;
+            }
+
+            .colorName{
+                flex: 1;
+                display: inline-block;
+                background: var(--headerBCColor, "#000");
+                transition: all 0.35s;
+            }
+        }
+
+    }
+}
+
+.opRectangle{
+    width: 100%;
+
+    .optionWrapper{
+        width: 100%;
+        gap: 15px;
+        align-items: center;
+        label{
+            
+            input{ 
+                border: 0;
+                clip: rect(1px,1px,1px,1px);
+                height: 1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px; 
+                bottom: 0;
+                left: 0;
+            }
+
+            input:checked  + .rectangleName,
+            input:checked  + .noneOption
+            {
+                background: $color_primary;
+                border-color: $color_primary;
+                color: #fff;
+            }
+
+            .rectangleName, .noneOption{
+                overflow: hidden;
+                position: relative;
+                display: inline-block;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                min-width: 62px;
+                padding: 10px 20px;
+                cursor: pointer;
+                background: var(--headerBCColor, "#000");
+                color: #3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                text-align: center;
+                transition: all 0.35s;
+
+                &:hover{
+                    background: $color_primary;
+                    border-color: $color_primary;
+                    color: #fff;
+                }
+
+            }
+        }
+
+    }
+
+}

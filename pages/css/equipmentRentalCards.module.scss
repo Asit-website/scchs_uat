@@ -1,0 +1,117 @@
+@import "global-objects";
+
+.equRentalCards{
+    width: calc(33.33% - 14px);
+    
+    .equRentalCard{
+        width: 100%;
+        border-radius: 12px;
+        background: #FFF;
+        box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+
+        .imageContainer{
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+            padding: 20px 0;
+            img{
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain;
+                transition: all 0.35s;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.1);
+                }
+            }
+
+            @include sm-desktop{
+                height: 180px;
+            }
+            @include emd-phone{
+                height: 130px;
+            }
+        }
+
+        .cardsBody{
+            padding: 20px 20px 30px 20px;
+
+            .title{
+                color: #181C32;
+                font-size: 16px;
+                line-height: 20px;
+                height: 22px;
+                font-style: normal;
+                font-weight: 600;
+                margin: 0 0 15px 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                a{
+                    color: #181C32;
+                    text-decoration: none;
+                    &:hover{
+                        color: $color_primary;
+                    }
+                }
+            }
+
+            .location{
+                color: #3F4254;
+                font-size: 14px;
+                line-height: 16px;
+                font-style: normal;
+                font-weight: 400;
+                margin: 0 0 15px 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                height: 18px;
+            }
+
+            .date{
+                color: #3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0 0 10px 0;
+            }
+
+            .price{
+                color: #3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0;
+                span{
+                    font-weight: 700;
+                }
+            }
+            @include md-phone{
+                padding: 10px 10px 20px 10px;
+                .title{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    @include md-phone{
+        width: calc(50% - 5px);
+    }
+
+    &.equipmentCardsSlider{
+        padding: 0 10px;
+        width: 100%;
+        margin: 0;
+        @include md-phone{
+            padding: 0 5px;
+        }
+    }
+
+}
+
+

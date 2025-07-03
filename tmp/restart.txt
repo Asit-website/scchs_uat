@@ -1,0 +1,82 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  env: {
+    NEXTAUTH_SECRET:"farichildFun@09072023",
+    NEXTAUTH_URL:"https://www.instacertify.com/",
+    next:{
+      api_url:"https://www.instacertify.com//api/v1/"
+    },
+    bc:{
+      store_url : "https://fairchild-air-force-base-store-1.mybigcommerce.com/",
+      store_url_ecommerce : "https://ecommerce-1517983.mybigcommerce.com/",
+      api_url : "https://api.bigcommerce.com/stores/suzeuussqe/",
+      store_hash : "suzeuussqe",
+      token : "b4rd5x5aimj4zwv6arra5bdle8qoi8w",
+      client_id : "pysegvp5x9ttzevnat59h6ean0hmvy3",
+      client_secret : "9ceed2d8e7edc11e7a2e53e6f72e9f48d88c50f5a11771d8fc0a83fefc7b438b",
+      channel_ecommerce : 1517983
+    },
+    server : {
+		path:"https://stagingadmin.mwrweb.com/",
+      api:"https://stagingadmin.mwrweb.com/api/",
+      jwt_secret:"UOUkeFnqauTf3qw0Hy6pv1JQq572l82gRBgnNbemPEjV2bTG2Bg0A3avm1svL9gs"
+    }
+  },
+  reactStrictMode: false,
+  experimental: {
+      scrollRestoration: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
+  images: {
+    domains: ['stagingadmin.mwrweb.com','cdn.pixabay.com','images.pexels.com','admin.fairchildfun.com','admin.mwrdev.com','cdn11.bigcommerce.com','fairchild-air-force-base-store-1.mybigcommerce.com','https://fairchildfun.mwrdev.com/'],
+  }
+}
+
+module.exports = nextConfig
+
+
+
+
+
+
+
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  env: {
+    NEXTAUTH_SECRET:"farichildFun@09072023",
+    NEXTAUTH_URL:"http://localhost:3000/",
+    next:{
+      api_url:"http://localhost:3000/api/v1/"
+    },
+    bc:{
+      store_url : "https://fairchild-air-force-base-store-1.mybigcommerce.com/",
+      store_url_ecommerce : "https://ecommerce-1517983.mybigcommerce.com/",
+      api_url : "https://api.bigcommerce.com/stores/suzeuussqe/",
+      store_hash : "suzeuussqe",
+      token : "b4rd5x5aimj4zwv6arra5bdle8qoi8w",
+      client_id : "pysegvp5x9ttzevnat59h6ean0hmvy3",
+      client_secret : "9ceed2d8e7edc11e7a2e53e6f72e9f48d88c50f5a11771d8fc0a83fefc7b438b",
+      channel_ecommerce : 1517983
+    },
+    server : {
+		path:"https://stagingadmin.mwrweb.com/",
+      api:"https://stagingadmin.mwrweb.com/api/",
+      jwt_secret:"UOUkeFnqauTf3qw0Hy6pv1JQq572l82gRBgnNbemPEjV2bTG2Bg0A3avm1svL9gs"
+    }
+  },
+  reactStrictMode: false,
+  experimental: {
+      scrollRestoration: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
+  images: {
+    domains: ['stagingadmin.mwrweb.com','cdn.pixabay.com','images.pexels.com','admin.fairchildfun.com','admin.mwrdev.com','cdn11.bigcommerce.com','fairchild-air-force-base-store-1.mybigcommerce.com','https://fairchildfun.mwrdev.com/'],
+  }
+}
+
+module.exports = nextConfig

@@ -1,0 +1,592 @@
+@import "global-objects";
+
+.accountNavigation{
+    width: 100%;
+    padding: 20px 0;
+    border-bottom:1px solid #D9E0E6;
+    margin-bottom: 50px;
+
+    ul{
+        display: flex;
+        gap: 25px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+
+        li{
+            a{
+                color: #818181;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                text-decoration: none;
+                display: inline-block;
+                text-align: center;
+                &:hover{
+                    color: $color_primary;
+                }
+            }
+
+            &.isActive{
+                a{
+                    color: $color_primary;
+                }
+            }
+        }
+
+        @include md-phone{
+            gap: 20px;
+            li{
+                a{
+                    font-size: 16px;
+                }
+            }
+        }
+
+    }
+
+}
+
+.pageAccountBG{
+    background: #F3F6F8;
+    width: 100%;
+    padding: 100px 0;
+    min-height: 100vh;
+    @include sm-desktop{
+        padding: 50px 0;
+    }
+    @include md-phone{
+        padding: 30px 0;
+    }
+}
+
+.pageAccount{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.accountContainer{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pageHead{
+    color:#181C32;
+    font-size: 32px;
+    line-height: 45px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0 0 30px 0;
+    text-align: center;
+    @include sm-desktop{
+        font-size: 26px;
+        line-height: 34px;
+        margin: 0 0 20px 0;
+    }
+}
+
+.profilePhoto{
+    margin: 0 0 60px 0;
+    label{
+        position: relative;
+        width: 212px;
+        height: 181px;
+        border-radius: 11px;
+        border: 1px dashed #7E8299;
+        background: #FFF;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 25px;
+        cursor: pointer;
+        overflow: hidden;
+
+        .uploadedImg{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        h4{
+            color: $color_primary;
+            text-align: center;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        span{
+            color:#7E8299;
+            text-align: center;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        input{
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 111;
+        }
+        &:hover{
+            border-color: $color_primary;
+        }
+    }
+}
+
+.formMessge{
+    width: 100%;
+    margin: 0 0 20px 0;
+    color:red;
+    text-align: left;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block;
+}
+
+.formBuilder{
+    width: 100%;
+    position: relative;
+
+    .formGroup{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 24px;
+
+        .formControl{
+            width: 100%;
+            label{
+                color:#5E6278;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                display: block;
+                margin-bottom: 10px;
+                small{
+                    position: relative;
+                    top: 2px;
+                    font-size: 16px;
+                    display: inline-block;
+                    margin-left: 5px;
+                    color: $color_primary;
+                }
+            }
+            input, select{
+                width: 100%;
+                padding: 20px 20px;
+                border-radius: 6px;
+                border: 1px solid #E1E3EA;
+                background: #FFF;
+                &:focus{
+                    border-color: $color_primary;
+                    outline: $color_primary;
+                }
+            }
+        }
+
+        @include md-phone{
+            flex-direction: column;
+        }
+
+    }
+
+    .formAction{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-top: 50px;
+        .buttonCancel{
+            text-decoration: none;
+            padding: 15px 50px;
+            border-radius: 6px;
+            border: 1px solid #181C32;
+            color: #181C32;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+            &:hover{
+                background: #181C32;
+                color: #FFF;
+            }
+        }
+        .buttonSubmit{
+            text-decoration: none;
+            padding: 15px 50px;
+            border-radius: 6px;
+            border: 1px solid $color_primary;
+            background: $color_primary;
+            color: #FFF;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+
+            &:hover{
+                border-color: #181C32;
+                background: #181C32;
+            }
+        }
+        @include md-phone{
+            flex-direction: column;
+        }
+    }
+
+}
+
+
+
+.addressBook{
+    width: 100%;
+    min-height: 100vh;
+
+    .addressBookList{
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                width: calc(33.33% - 14px);
+                padding: 30px;
+                border-radius: 12px;
+                background: #FFF;
+                box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.05);
+                h4{
+                    color: #181C32;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    margin: 0 0 16px 0;
+                }
+                p{
+                    color: #3F4254;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    min-height: 15px;
+                    margin: 0 0 25px 0;
+                }
+                > span{
+                    color: #3F4254;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    display: block;
+                    margin: 0 0 16px 0;
+                }
+                .edit{
+                    padding: 12px 20px;
+                    border-radius: 3.274px;
+                    background:$color_primary;
+                    color: #FFF;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    margin-right: 15px;
+                    &:hover{
+                        background: #000;
+                        border-color: #000;
+                    }
+                }
+                .delete{
+                    padding: 12px 20px;
+                    border-radius: 3.274px;
+                    border: 0.546px solid  #181C32;
+                    color: #000;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    &:hover{
+                        background: red;
+                        border-color: red;
+                        color: #fff;
+                    }
+                }
+                &.addressBookNew{
+                    padding: 0;
+                    position: relative;
+                    min-height: 363px;
+                    a{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        text-decoration: none;
+                        gap: 15px;
+                        color:#3F4254;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        height: 100%;
+                        &:hover{
+                            color: $color_primary;
+                            svg{
+                                path{
+                                    fill: $color_primary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @include sm-desktop{
+        .addressBookList{
+            ul{
+                li{
+                    width: calc(50% - 10px);
+                    padding: 30px;
+                }
+            }
+        }
+    }
+
+    @include md-phone{
+        .addressBookList{
+            ul{
+                li{
+                    width: calc(50% - 10px);
+                    padding: 20px;
+                }
+            }
+        }
+    }
+
+    @include mb-phone{
+        .addressBookList{
+            ul{
+                li{
+                    width: 100%;
+                    padding: 20px;
+                    &.addressBookNew{
+                        min-height: 200px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+
+.orderList{
+    width: 100%;
+    
+    .orderListUL{
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        .accountListItem{
+            margin: 0 0 50px 0;
+            padding: 0 0 50px 0;
+            width: 100%;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .accountProduct{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+
+            .productFigure{
+                width: 13%;
+                .productFigureLoad{
+                    width: 100px;
+                    height: 100px;
+                    display: block;
+                    border-radius: 11px;
+                    @extend .eleLazyLoad;
+                }
+                img{
+                    border-radius: 11px;
+                    border: 1px solid #7E8299;
+                }
+                @include md-phone{
+                    width: 20%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+                @include mb-phone{
+                    width: 25%;
+                }
+            }
+
+            .productBody{
+                width: 87%;
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                @include md-phone{
+                    width: 80%;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+                @include mb-phone{
+                    width: 75%;
+                }
+            }
+
+            .bodyContent{
+                h5{
+                    color: #000;
+                    margin: 0 0 10px 0;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+                p{
+                    color: #3F4254;
+                    margin: 0 0 10px 0;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+
+            .orderDates{
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                .dates{
+                    gap: 2px;
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    .label{
+                        color: #3F4254;
+                        margin: 0 0 5px 0;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+                    .date{
+                        color: #3F4254;
+                        margin: 0;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+                }
+                @include mb-phone{
+                    margin-top: 20px;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+
+            .bodyAction{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-end;
+
+                .orderStatus{
+                    background: #daecff;
+                    color: #000;
+                    padding: 2px 10px;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: 10px;
+                    cursor: default;
+                }
+
+                .orderQrCode{
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    color: #3595F6;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    @include mb-phone{
+                        font-size: 14px;
+                    }
+                }
+
+                @include md-phone{
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+
+            }
+
+        }
+
+
+    }
+}
+
+
+.noOrder{
+    text-align: center;
+    padding: 100px 0;
+    svg{
+        fill: #3F4254;
+        width: 50px;
+        height: 50px;
+        opacity: 0.5;
+    }
+    p{
+        color: rgba(#3F4254, 0.5);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding: 0;
+        margin: 20px 0 0 0;
+    }
+}

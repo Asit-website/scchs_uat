@@ -1,0 +1,129 @@
+@import "global-objects";
+
+.categoryLayout {
+    width: 100%;
+    padding: 50px 0;
+    
+    @include sm-desktop{
+        padding:30px 0;
+    }
+
+    .categoryHead{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 0 10px;
+        margin: 0 0 25px 0;
+        
+        .content{
+            width: 70%;
+            h2{
+                color: #181C32;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                margin: 0;
+                a{
+                    color: #181C32;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-decoration-line: underline;
+                    text-underline-offset: 5px;
+                    display: inline-block;
+                    margin-left: 40px;
+                    &:hover{
+                        color: $color_primary;
+                    }
+                }
+            }
+        }
+
+        @include sm-desktop{
+            padding: 0 5px;
+            .content{
+                h2{
+                    font-size: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    a{
+                        margin: 15px 0 0 0;
+                    }
+                }
+            }
+        }
+        @include md-phone{
+            flex-direction: column;
+            .content{
+                width: 100%;
+                margin-bottom: 15px;
+                h2{
+                    font-size: 18px;
+                }
+                p{
+                    font-size: 14px;
+                }
+            }
+        }
+
+
+        + div{
+            > div{
+                padding: 30px 0 !important;
+            }
+        }
+    }
+
+    
+
+}
+
+.customerArrow{
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include md-phone {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .arrowButton{
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;   
+        background: #fff;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+        transition: all 0.35s;
+        &:hover{
+            background: $color_primary;
+            svg{
+                stroke: #fff;
+                path{
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+.similarProduct{
+    width: 100%;
+    padding-bottom: 120px;
+    margin: 0 -10px;
+    @include sm-desktop{
+        padding-bottom: 60px;
+    }
+    
+}
+

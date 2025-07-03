@@ -1,0 +1,398 @@
+@import "global-objects";
+
+
+.collections{
+    width: 100%;
+    padding: 40px 10px 0 10px;
+
+    .collectionsHead{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1, h2{
+            width: 100%;
+            color: #181C32;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-transform: uppercase;
+            margin: 0 0 15px 0;
+
+            @include sm-desktop{
+                width: 80%;
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+        button{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 135px;
+            background: $color_primary;
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            transition: all 0.35s;
+
+            svg{
+                fill: #fff;
+                width: 18px;
+                height: 18px;
+            }
+
+            &:hover{
+                background: #000;
+            }
+            @include sm-desktop{
+                display: flex;
+            }
+        }
+    }
+
+    @include sm-desktop{
+        padding: 20px 0 0 0;
+    }
+
+
+    .collectionsMenu{
+        width: 100%;
+        
+        .menuClose{
+            display: none;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+            cursor: default;
+            svg{
+                cursor: pointer;
+                background: #ccc;
+                border-radius: 50%;
+                padding: 5px;
+                stroke-width: 2px;
+                width: 35px;
+                height: 35px;
+                fill: #000;
+                stroke: #000;
+                &:hover{
+                    background: $color_primary;
+                    fill: #fff;
+                    stroke: #fff;
+                }
+            }
+            @include sm-desktop{
+                display: flex;
+            }
+        }
+        
+        @include sm-desktop{
+            display: none;
+            &.isOpen{
+                display: block;
+                height: 60vh;
+                border-radius: 10px 10px 0 0;
+                background: #ffffff;
+                padding: 20px;
+                box-shadow: 0 0 0 100000px rgb(0 0 0 / 60%);
+                z-index: 999;
+                overflow: auto;
+
+                position: fixed;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                padding: 10px;
+                z-index: 999;
+                background: #fff;
+            }
+        }
+    }
+
+    .collLeavel_1 {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: flex-start;
+        max-width:100%;
+        padding: 0;
+        margin: 0;
+        z-index: 1;
+        background: #fff;
+        > li{
+            position: relative;
+            > a{
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid #BFC8D1;
+                text-decoration: none;
+                color:#3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                padding: 10px 15px;
+                gap: 5px;
+                transition: all 0.35s;
+
+                span{
+                    line-height: 0;
+                    svg{
+                        path{
+                            fill: #3F4254;
+                        }
+                    }
+                }
+                @include sm-desktop {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+           
+            &:hover{
+                @include sm-desktop-min{
+                    > a{
+                        color: #fff;
+                        border: 1px solid #3595F6;
+                        background: $color_primary;
+                        svg{
+                            path{
+                                fill: #fff;
+                            }
+                        }
+                    }
+                    .collLeavel_2 {
+                        display: flex;
+                    }
+                }
+            }
+
+            @include sm-desktop {
+                width: 100%;
+                a{
+                    min-height: 42px;
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    padding: 12px 10px;
+                    position: relative;
+                    .iconDown{
+                        border-left: 1px solid #ccc;
+                        background: #fff;
+                        position: absolute;
+                        width: 35px;
+                        height: 41px;
+                        top: 0;
+                        right: 0;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        svg{
+                            fill: #3F4254;
+                            stroke: #3F4254;
+                        }
+                        &:hover{
+                            background: #000;
+                            border-color: #000;
+                            svg{
+                                stroke: #fff;
+                                path{
+                                    fill: #fff;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        @include sm-desktop {
+            padding-bottom: 50px;
+        }
+      
+    }
+
+	
+    .collLeavel_2 {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        top: 38px;
+        left: 0;
+        width: 200px;
+        list-style: none;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        flex-direction: column;
+        background: #fff;
+
+        @include sm-desktop {
+            width: 100%;
+            position: relative;
+            top: 0;
+            left: unset;
+            right: 0;
+            border-left: 10px solid $color_primary;
+        }
+
+        > li{
+            position: relative;
+            > a{
+                width: 100%;
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid #BFC8D1;
+                text-decoration: none;
+                color:#3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                padding: 10px 15px;
+                transition: all 0.35s;
+                svg{
+                    path{
+                        fill: #3F4254;
+                    }
+                }
+                @include sm-desktop {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+            
+            &:hover{
+                @include sm-desktop-min{
+                    > a{
+                        color: #fff;
+                        border: 1px solid #3595F6;
+                        background: $color_primary;
+                        svg{
+                            path{
+                                fill: #fff;
+                            }
+                        }
+                    }
+                    .collLeavel_3 {
+                        display: flex;
+                    }
+                }
+            }
+
+            @include sm-desktop {
+                width: 100%;
+                a{
+                    min-height: 42px;
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    padding: 12px 10px;
+                    position: relative;
+                    .iconDown{
+                        border-left: 1px solid #ccc;
+                        background: #fff;
+                        position: absolute;
+                        width: 35px;
+                        height: 41px;
+                        top: 0;
+                        right: 0;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        svg{
+                            fill: #3F4254;
+                            stroke: #3F4254;
+                        }
+                        &:hover{
+                            background: #000;
+                            border-color: #000;
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    .collLeavel_3 {
+        display: none;
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 200px;
+        width: 200px;
+        list-style: none;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        flex-direction: column;
+        background: #fff;
+
+        @include sm-desktop {
+            width: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            border-left: 10px solid #000;
+        }
+
+        > li{
+            position: relative;
+            > a{
+                width: 100%;
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid #BFC8D1;
+                text-decoration: none;
+                color:#3F4254;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                padding: 10px 15px;
+                transition: all 0.35s;
+                @include sm-desktop {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+            @include sm-desktop {
+                width: 100%;
+                > a{
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+            &:hover{
+                @include sm-desktop-min{
+                    a{
+                        color: #fff;
+                        border: 1px solid #3595F6;
+                        background: $color_primary;
+                        svg{
+                            path{
+                                fill: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+}

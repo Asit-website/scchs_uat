@@ -1,0 +1,105 @@
+@import "global-objects";
+
+
+.page_404{
+    width: 100%;
+    padding: 200px 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 20px !important;
+
+    .icon_404{
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 100px;
+        .round{
+            display: inline-block;
+            width: 138px;
+            height: 138px;
+            border-radius: 50%;
+            background: $color_primary;
+        }
+        .blur{
+            width: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -40%;
+            display: inline-block;
+            height: 112px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 100%);
+            backdrop-filter: blur(28px);
+        }
+    }
+
+    .content{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .error_show{
+            border-radius: 4px;
+            background: #EFF8FF;
+            padding: 10px 20px;
+            color:$color_primary;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        h1{
+            margin: 35px 0 20px 0;
+            color:#181C32;
+            font-size: 48px;
+            line-height: 48px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-align: center;
+        }
+        p{
+            color:#5E6278;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            text-align: center;
+        }
+        .buttonGoHome{
+            margin-top: 40px;
+            display: inline-block;
+            border-radius: 4px;
+            background: $color_primary;
+            color: #fff;
+            padding: 10px 20px;
+            line-height: 18px;
+            font-style: normal;
+            line-height: normal;
+            text-decoration: none;
+            &:hover{
+                background: #000;
+            }
+        }
+        @include md-phone{
+            h1{
+                font-size: 28px;
+                line-height: 30px;
+            }
+            p{
+                font-size: 14px;
+            }
+        }
+    }
+
+    @include md-phone{
+        padding: 100px 0;
+    }
+
+}
