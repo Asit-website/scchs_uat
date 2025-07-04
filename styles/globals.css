@@ -5288,6 +5288,7 @@ justify-content: center !important;
   position: relative;
   display: inline-block;
   width: 100%;
+  min-width: 216px;
   /* adjust as needed */
 }
 

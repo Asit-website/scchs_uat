@@ -519,7 +519,7 @@ export default function events(pageProp) {
                                         <Link href={`/eventdetail?id=${card?.slug}`}>
                                             <button className="info-btn">
                                                 More Info <span className="arrow-icon"></span>
-                                            </button>
+                                                </button>
                                         </Link>
                                     </div>
                                 </div>
