@@ -149,8 +149,8 @@ export default function userlogin(pageProp) {
 
                         {/* <Link href="/join/register"> <span className="scchs-click-here"> Sign up for free. </span> </Link>  Already a member? Log in here. */}
                         {/* <Link href="/join/register"> <span className="scchs-click-here">   Already a member? </span> </Link> Sign up for free or Log in here. */}
-                        
-                        <Link href="/join/register"> <span className="scchs-click-here">   Already a member? </span> </Link> Login here  <br/> <span style={{fontWeight:"bold"}}> Or sign up for free</span>
+
+                         <span >   Already a member? </span>  Login here  Or <br/> <span style={{fontWeight:"bold"}}></span><Link className="scchs-click-here" href="/join/register"> sign up for free </Link>
                     </p>
                     <h2 className="scchs-login-title">Sign in</h2>
                     <form onSubmit={submitLogin}>
