@@ -508,7 +508,7 @@ export default function events(pageProp) {
 
                                         <span>{formatTime(card?.start_time)} - {formatTime(card?.end_time)}</span>
                                     </div>
-                                    <Link href={`/eventdetail?id=${card?.slug}`}>  <img
+                                    <Link href={`/eventdetail/${card?.id}/${card?.slug}`}>  <img
                                         src={`https://uat.scchs.co.in/backend/admin/images/event_management/events/${card?.images[0]}`}
                                         alt="Event"
                                         className="card-image"
@@ -516,7 +516,7 @@ export default function events(pageProp) {
                                     <div className="card-content">
                                         <Link style={{ textDecoration: "none", color: "#000" }} href={`/eventdetail?id=${card?.slug}`}><h3>{card.title}</h3></Link>
                                         <p>{card.short_description}</p>
-                                        <Link href={`/eventdetail?id=${card?.slug}`}>
+                                        <Link href={`/eventdetail/${card?.id}/${card?.slug}`}>
                                             <button className="info-btn">
                                                 More Info <span className="arrow-icon"></span>
                                                 </button>

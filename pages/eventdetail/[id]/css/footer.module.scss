@@ -1,0 +1,196 @@
+@import "global-objects";
+
+
+.footer{
+    --footerBCColor: #24252A;
+    --footerItemColor: #ffffff;
+    --footerItemHoverColor:#3595F6;
+    padding: 60px 0 0 0;
+    width: 100%;
+    //border-radius: 20px 20px 0 0;
+    background: var(--footerBCColor, '#24252A');
+
+    @include md-phone{
+        padding: 40px 0 0 0;
+    }
+
+    .parent{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 60px;
+
+        .left{
+            width: 40%;
+            padding-right: 10%;
+
+            .footerLogo{
+                width: 180px;
+                object-fit: contain;
+                object-position: left top;
+                margin-bottom: 20px ;
+            }
+
+            .footerTitle{
+                margin: 0 0 15px 0;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                color: var(--footerItemColor, '#24252A');
+                * {
+                    font-size: 22px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    color: var(--footerItemColor, '#24252A');
+                    margin: 0;
+                }
+            }
+            .footerSubTitle{
+                color: var(--footerItemColor, '#24252A');
+                font-size: 14px;
+                line-height: 22px;
+                font-style: normal;
+                font-weight: 400;
+                *{
+                    margin: 0;
+                }
+            }
+        }
+
+        .right{
+            width: 60%;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        @include md-phone{
+            padding-bottom: 30px;
+            flex-direction: column;
+            .left{
+                width: 100%;
+                padding: 0 0 30px 0;
+            }
+            .right{
+                width: 100%;
+            }
+        }
+
+    }
+
+
+    .footerItems{
+        width: calc(25% - 19px);
+
+        .footerItemsHead{
+            color: var(--footerItemColor, '#24252A');
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0 0 20px 0;
+            a{
+                text-decoration: none;
+                color: var(--footerItemColor, '#24252A');
+                &:hover{
+                    color: var(--footerItemHoverColor, '#24252A');
+                }
+            }
+        }
+
+        .footerItemsUL{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li{
+                margin: 0 0 10px 0;
+                a{
+                    text-decoration: none;
+                    color: var(--footerItemColor, '#24252A');
+                    display: block;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    padding: 3px 0;
+                    &:hover{
+                        color: var(--footerItemHoverColor, '#24252A');
+                    }
+                }
+            }
+        }
+
+        
+
+        @include emd-desktop{
+            width: calc(50% - 13px);
+        }
+
+    }
+
+}
+
+.copyRight{
+    width: 100%;
+    padding: 27px 0;
+    border-top: 1px solid #898989;
+
+    .crParent{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .crLeft{
+            p{
+                color: var(--footerItemColor, '#24252A');
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height:16px;
+                margin: 0;
+            }
+        }
+        .crRight{
+            ul{
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap:20px;
+                padding: 0;
+                margin: 0;
+                li{
+                    svg{
+                        width: 24px;
+                        height: 24px;
+                        display: block;
+                        path{
+                            fill:var(--footerItemColor, '#24252A');
+                        }
+                        &:hover{
+                            path{
+                                fill:var(--footerItemHoverColor, '#24252A');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @include md-phone{
+            flex-direction: column-reverse;
+            gap: 20px;
+            .crLeft{
+                p{
+                    font-size: 14px;
+                    line-height:14px;
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+
+}

@@ -1,0 +1,124 @@
+@import "global-objects";
+
+
+.categoryLayoutFull{
+    width: 100%;
+    padding: 35px 0;
+    
+    @include sm-desktop{
+        padding: 10px 0;
+    }
+
+    .categoryHead{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 0 0 25px 0;
+        padding: 0 10px;
+        
+        .content{
+            width: 70%;
+            h2{
+                color: #181C32;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                margin: 0 0 10px 0;
+            }
+            p{
+                color: #181C32;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0;
+                a{
+                    color: #181C32;
+                    text-decoration-line: underline;
+                    display: inline-block;
+                    margin-left: 50px;
+                    &:hover{
+                        color: $color_primary;
+                    }
+                }
+            }
+        }
+
+        @include sm-desktop{
+            .content{
+                p{
+                    display: flex;
+                    flex-direction: column;
+                    a{
+                        margin: 20px 0 0 0;
+                    }
+                }
+            }
+        }
+        @include md-phone{
+            flex-direction: column;
+            .content{
+                width: 100%;
+                margin-bottom: 30px;
+                h2{
+                    font-size: 20px;
+                }
+                p{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .rentalCardGrids{
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        @include md-phone{
+            gap: 10px;
+        }
+    }
+
+}
+
+
+
+.customerArrow{
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include md-phone {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .arrowButton{
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;   
+        background: #fff;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+        transition: all 0.35s;
+        &:hover{
+            background: $color_primary;
+            svg{
+                stroke: #fff;
+                path{
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}

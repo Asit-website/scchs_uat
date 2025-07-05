@@ -1,0 +1,79 @@
+@import "global-objects";
+
+.scchs-login-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(135deg, #f8f8f8, #fefefe);
+}
+.scchs-login-card {
+	background: white;
+	padding: 40px 30px;
+	border-radius: 10px;
+	max-width: 400px;
+	width: 100%;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+.scchs-info-text {
+	font-size: 14px;
+	margin-bottom: 25px;
+	color: #444;
+	line-height: 1.5;
+}
+.scchs-click-here {
+	font-weight: bold;
+	color: #c23a56;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.scchs-login-title {
+	font-size: 24px;
+	margin-bottom: 30px;
+}
+.scchs-input-group {
+	position: relative;
+	margin-bottom: 20px;
+	input {
+		width: 100%;
+		padding: 12px 40px 12px 15px;
+		border: 2px solid #ccc;
+		border-radius: 8px;
+		font-size: 16px;
+		outline: none;
+		transition: border-color 0.2s ease;
+		&:focus {
+			border-color: #888;
+		}
+	}
+}
+.scchs-eye-icon {
+	position: absolute;
+	right: 15px;
+	top: 12px;
+	cursor: pointer;
+	font-size: 18px;
+}
+.scchs-forgot-link {
+	color: #c23a56;
+	font-size: 14px;
+	margin-bottom: 25px;
+	cursor: pointer;
+}
+.scchs-login-button {
+	width: 100%;
+	padding: 12px;
+	font-size: 16px;
+	background-color: #e6e6e6;
+	color: #333;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: #ccc;
+	}
+}
+
