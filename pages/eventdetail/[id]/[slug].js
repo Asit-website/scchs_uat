@@ -3,19 +3,19 @@ import React, { useEffect, useRef, useState } from "react";
 import style from "./css/shoppings-lists.module.scss";
 import Link from "next/link";
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import HeadSEO from "../components/common/Head/head";
-import GlobalHeaderFooter from "../utils/common/global-header-footer";
-import Navbar from '../components/common/Navbar/Navbar'
+import HeadSEO from "/components/common/Head/head";
+import GlobalHeaderFooter from "/utils/common/global-header-footer";
+import Navbar from '/components/common/Navbar/Navbar'
 //Slider css files
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ShoppingProductSlider from "../components/common/shopping/product-slider";
+import ShoppingProductSlider from "/components/common/shopping/product-slider";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-import ShoppingCollections from "../components/common/shopping/collections";
+import ShoppingCollections from "/components/common/shopping/collections";
 import Head from "next/head";
-import HeadSEO1 from "../components/common/Head/head1";
+import HeadSEO1 from "/components/common/Head/head1";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 // import { useRouter } from "next/router";
@@ -72,7 +72,7 @@ export default function eventdetail(pageProp) {
 
 
     const router = useRouter();
-    const { id } = router.query;
+    const { id, slug } = router.query;
 
     console.log(id);
 
@@ -184,7 +184,7 @@ export default function eventdetail(pageProp) {
             console.log("error");
         }
 
-    }, [id]);
+    }, [id, slug]);
 
     // ============slider=========
 

@@ -1,0 +1,966 @@
+@import "global-objects";
+
+.rentalDetails{
+    width: 100%;
+    padding: 50px 0;
+    @include md-phone{
+        padding: 25px 0 0 0;
+    }
+}
+
+
+
+.rentalFigure{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 17px;
+    position: relative;
+    
+    .left{
+        width: calc(60% - 17px);
+        img{
+            width: 100%;
+            height: 441px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    }
+
+    .right{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        img{
+            width: 100%;
+            height: 217px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    }
+
+    .btn_show_more_photos{
+        position: absolute;
+        right: 20px;
+        bottom:20px;
+        border-radius: 6px;
+        border: 1px solid  $color_primary;
+        background: #F1F6FE;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 14px;
+        align-items: center;
+        gap: 4px;
+        color: $color_primary;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        cursor: pointer;
+        &:hover{
+            background: $color_primary;
+            color: #fff;
+            svg{
+                path{
+                    fill: #fff;
+                }
+            }
+        }
+    }
+
+    @include sm-desktop{
+        .left{
+            width: 100%;
+            img{
+                height: 350px;
+            }
+        }
+        .right{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 17px;
+            .rightInner{
+                width: 50%;
+            }
+        }
+        .btn_show_more_photos{
+            position: relative;
+            left: 0;
+            right: 0;
+            top: unset;
+            margin-top: 25px;
+        }
+    }
+
+    @include md-phone{
+        .left{
+            img{
+                height: 300px;
+            }
+        }
+        .right{
+            img{
+                height: 180px;
+            }
+        }
+    }
+
+    @include esm-phone{
+        gap: 10px;
+        .left{
+            img{
+                height: 260px;
+            }
+        }
+        .right{
+            gap: 10px;
+            img{
+                height: 150px;
+            }
+        }
+    }
+
+}
+
+.rentalBody{
+    width: 100%;
+    padding: 40px 0 0 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+
+    .left{
+        width: 50%;
+        border-bottom: 1px solid #D9E0E6;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .right{
+        position: relative;
+        width: 50%;
+        border-radius: 12px;
+        border: 1px solid #E1E3EA;
+        padding: 40px;
+    }
+    
+    @include sm-desktop{
+        flex-wrap: wrap;
+        .left{
+            width: 100%;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .right{
+            width: 100%;
+            padding:20px 15px;
+        }
+    }
+
+    .rentalTitle{
+        color:#181C32;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 32px 0;
+        @include sm-desktop{
+            font-size: 26px;
+        }
+    }
+
+    .rentalDescription{
+        width: 100%;
+        color: #181C32;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        .rentalDescMore{
+            color: $color_primary;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            padding: 0 0 1px 0;
+            border-bottom: 1px solid $color_primary;
+            transition: all 0.35s;
+            &:hover{ color: #000; }
+        }
+    }
+
+    .rentalPrice{
+        color:#181C32;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 24px 0;
+        span{
+            font-size: 20px;
+            font-weight: 400;
+        }
+    }
+
+    .rentalOption{
+        border-radius: 12px;
+        border: 1px solid #E1E3EA;
+
+        label{
+            display: block;
+            width: 100%;
+            color:#1F1F1F;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-transform: uppercase;
+            margin: 0 0 8px 0;
+        }
+
+        input{
+            width: 100%;
+            color: #1F1F1F;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            border: none;
+            padding: 0;
+            
+            &:focus{
+                box-shadow:none;
+                outline: none;
+            }
+        }
+
+        .optionDates{
+            display: flex;
+            padding: 20px;
+            border-bottom: 1px solid #E1E3EA;
+
+            .optionDate{
+                width: 50%;
+                border-right: 1px solid #E1E3EA;
+            }
+
+            .optionDateCheckout{
+                border: none;
+                padding-left: 10px;
+                text-align: right;
+                input{
+                    text-align: right;
+                }
+            }
+
+        }
+        
+        .optionNoGuests{
+            padding: 20px;
+            position: relative;
+            //border-bottom: 1px solid #E1E3EA;
+
+            + .optionNoGuests {
+                border-bottom: none;
+            }
+
+            .arrowDown {
+                position: absolute;
+                right: 20px;
+                svg{
+                    width: 20px;
+                    height: 20px;
+                    stroke: #5E6278;
+                }
+            }
+        }
+
+    }
+
+    .rentalSelectedOption{
+        width: 100%;
+        margin: 40px 0 0 0;
+
+        .minimumMessage{
+            color: #7E8299;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            border-bottom: 1px solid #D9E0E6;
+            padding: 0 0 20px 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .selectedOption{
+            width: 100%;
+            border-bottom: 1px solid #D9E0E6;
+            padding: 0 0 20px 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            justify-content: space-between;
+            .name, .value{
+                color:#1F1F1F;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-align: left;
+            }
+            .value{
+                text-align: right;
+            }
+            &.isBold{
+                padding: 0;
+                margin: 0;
+                border: none;
+                .name, .value{
+                    font-weight: 600;
+                }
+            }
+        }
+
+    }
+
+    .formAction{
+        width: 100%;
+        .buttonAddtocart {
+            width: 100%;
+            margin-top: 32px;
+            border-radius: 6px;
+            padding: 24px 20px;
+            justify-content: center;
+            align-items: center;
+            background: $color_primary;
+            color: #FFF;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            cursor: pointer;
+            transition: all 0.35s;
+
+            &:hover{
+                background: #000;
+            }
+
+            &[disabled]{
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+    }
+
+}
+
+
+.googleMap{
+    width: 100%;
+    padding: 50px 0 0 0;
+    max-width: 65%;
+    iframe{
+        border-radius: 18px;
+        border: 0;
+        width: 100%;
+    }
+   
+    @include sm-desktop{
+        max-width: 100%;
+        padding: 30px 0 0 0;
+    }
+}
+
+
+.morePhotosPopups{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    @include sm-desktop{
+        background: rgba($color: #000000, $alpha: 0.9);
+    }
+
+    .close{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        stroke: #fff;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        z-index: 333;
+    }
+
+    .inner{
+        width: 40%;
+        margin: 0 auto;
+        padding: 2%;
+        img{
+            width: 100%;
+            height: 90vh;
+            object-fit: contain;
+        }
+        @include xxl-desktop{
+            width: 55%;
+        }
+        @include smid-desktop{
+            width: 70%;
+        }
+        @include sm-desktop{
+            width: 90%;
+            img{height: 100vh;}
+        }
+    }
+}
+
+.rentalPlaceDetails{
+    width: 100%;
+    padding: 0 0 60px 0;
+    margin: 0 0 30px 0;
+    border-bottom: 1px solid #D9E0E6;
+    max-width: 50%;
+
+    h2{
+        color:#181C32;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 25px 0;
+    }
+
+    .rentalPlaceBody{
+        width: 100%;
+        display: flex;
+        gap: 24px;
+
+        .rentalPlaceContent{
+            width: 23%;
+            border-radius: 12px;
+            border: 1px solid #D9E0E6;
+            padding: 20px;
+            h5{
+                color: #1F1F1F;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin: 10px 0;
+            }
+            h6{
+                color: #3F4254;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin: 0;
+            }
+        }
+    }
+
+    @include md-desktop {
+        .rentalPlaceBody{
+            .rentalPlaceContent{
+                width:calc(50% - 12px);
+            }
+        }
+    }
+
+    @include sm-desktop{
+        max-width: 100%;
+        padding: 0;
+        margin: 50px 0;
+        border: none;
+        .rentalPlaceBody{
+            width: 100%;
+            flex-wrap: wrap;
+            .rentalPlaceContent{
+                width:calc(33.33% - 16px);
+            }
+        }
+    }
+
+    @include md-phone{
+        .rentalPlaceBody{
+            .rentalPlaceContent{
+                width:calc(50% - 12px);
+            }
+        }
+    }
+
+    @include esm-phone{
+        .rentalPlaceBody{
+            .rentalPlaceContent{
+                width:100%;
+            }
+        }
+    }
+
+}
+
+.rentalSleepDetails{
+    width: 100%;
+    max-width: 50%;
+
+    h2{
+        color:#181C32;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 40px 0;
+    }
+
+    ul {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        
+        li{
+            svg{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+            }
+            width: 50%;
+            padding-right: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 35px;
+
+            color: #1F1F1F;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            word-break: break-word;
+        }
+
+    }
+
+    .buttonMore{
+        border-radius: 6px;
+        padding: 16px;
+        border: 1px solid $color_primary;
+        color: $color_primary;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        transition: all 0.35s;
+        &:hover{
+            background: $color_primary;
+            color: #fff;
+        }
+    }
+
+    @include sm-desktop{
+        max-width: 100%;
+        ul {
+            li{
+
+                font-size: 14px;
+            }
+        }
+    }
+
+    @include eesm-phone{
+        ul {
+            li{
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+
+.location_details{
+    width: 100%;
+    margin: 60px 0 0 0;
+    border-top:1px solid #D9E0E6;
+    padding-top: 24px;
+    max-width: 65%;
+
+    h2{
+        color: #181C32;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 30px 0;
+        width: 100%;
+    }
+
+    .location_detail{
+        width: 100%;
+        display: flex;
+        gap: 16px;
+    }
+
+    .content{
+        h4{
+            color: #3F4254;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+        p{
+            color: #3F4254;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        button{
+            min-width: 120px;
+            display: inline-flex;
+            padding: 10px 15px;
+            margin-top: 15px;
+            border-radius:30px;
+            border: 1px solid $color_primary;
+            background: #F1F6FE;
+            color: $color_primary;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            
+            &.isActive{
+                background: $color_primary;
+                color: #ffffff;
+                svg{ path{ fill: #fff; } }
+            }
+            &:hover{
+                background:#000;
+                border-color: #000;
+                color: #ffffff;
+                svg{ path{ fill: #fff; } }
+            }
+        }
+    }
+
+    + .iconWithDetails{
+        margin-top: 36px;
+    }
+
+    @include sm-desktop{
+        max-width: 100%;
+        ul {
+            li{
+
+                font-size: 14px;
+            }
+        }
+    }
+
+}
+
+
+.contactDetails{
+    width: 100%;
+    margin: 50px 0;
+    max-width: 65%;
+    border-radius: 12px;
+    padding: 35px;
+    border: 1px solid #E1E3EA;
+    display: flex;
+    align-items: center;
+
+    .left{
+        width: 50%;
+        padding-right: 20px;
+        h4{
+            color: #181C32;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 10px 0;
+        }
+        p{
+            color: #1F1F1F;
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 0;
+        }
+    }
+
+    .right{
+        width: 50%;
+        > div:last-child{
+            margin: 0;
+        }
+    }
+
+    .contactInfo{
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        margin: 0 0 30px 0;
+        .icon{
+            width: 48px;
+            height: 48px;
+            padding: 12px;
+            border-radius: 4px;
+            background: #EFF8FF;
+            svg{
+                path{
+                    fill: $color_primary;
+                    stroke: none;
+                }
+            }
+        }
+        .info{
+            width: 100%;
+            p{
+                color: #3F4254;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                margin: 0 0 5px 0;
+            }
+            a{
+                color: #5E6278;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                text-decoration: none;
+                word-break: break-all;
+                &:hover{
+                    color: $color_primary;
+                }
+            }
+        }
+    }
+
+    @include sm-desktop{
+        flex-wrap: wrap;
+        max-width: 100%;
+        padding: 25px;
+        .left{
+            width: 100%;
+        }
+        .right{
+            width: 100%;
+            margin-top: 30px;
+        }
+    }
+
+    @include md-phone{
+        padding: 15px;
+    }
+
+}
+
+.guests_popup{
+    position: absolute;
+    right: 0;
+    top: 35px;
+    border-radius: 12px;
+    border: 1px solid #D9E0E6;
+    background: #FFF;
+    overflow: hidden;
+    z-index: 2;
+    width: 100%;
+
+    .name_value{
+        width: 100%;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #D9E0E6;
+        min-height: 70px;
+
+        .lblTitle{
+            width: 100%;
+            text-align: left;
+            .type{
+                display: block;
+                width: 100%;
+                color: #1F1F1F;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-bottom: 5px;
+            }
+            .info{
+                display: block;
+                width: 100%;
+                color: #5E6278;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+
+        .formIncrement{
+            position: relative;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            text-align: right;
+            .inputQty{
+                height: 35px;
+                color:#181C32;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                text-align: center;
+                width: 100%;
+                display: block;
+            }
+            .btnIncDec{
+                position: absolute;
+                top: 0;
+                cursor: pointer;
+                &:hover{
+                    svg{
+                        rect{ fill: $color_primary;stroke: $color_primary;}
+                        path{ fill: #fff; }
+                    }
+                }
+            }
+            .btnMinus{
+                left: 0;
+            }
+            .btnPlus{
+                right: 0;
+            }
+        }
+
+    }
+
+    @include sm-desktop{
+        width: 100%;
+        right: 0;
+        top: 0;
+    }
+}
+
+.errorMessage{
+    display: block;
+    color: red;
+    margin: 0 0 20px 0;
+}
+
+
+
+.popupCommon{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    .close{
+        margin-top: 60px;
+        margin-left: 58px;
+        border-radius: 50%;
+        background: #F3F6F8;
+        padding: 5px;
+        stroke: #5E6278;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 333;
+        stroke-width: 2px;
+        margin-bottom: 20px;
+        &:hover{
+            background: $color_primary;
+            stroke: #fff;
+        }
+        @include sm-desktop{
+            margin: 20px auto;
+            display: block;
+        }
+    }
+
+    .inner{
+        position: relative;
+        background: #fff;
+        width: 40%;
+        margin: 0 auto;
+        border-radius: 24px;
+
+        .rentalDescMore{
+            padding: 0 60px 20px 60px;
+            overflow: auto;
+            max-height: calc(100vh - 200px);
+            max-width: 100%;
+
+            .rentalDescMoreHead{
+                color: #181C32;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                margin: 0 0 24px 0;
+            }
+
+            .rentalDescInfo{
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
+
+            @include sm-desktop{
+                padding: 20px;
+            }
+        }
+        
+        .rentalSleepDetails{
+            padding: 0 60px 20px 60px;
+            overflow: auto;
+            max-height: calc(100vh - 200px);
+            max-width: 100%;
+            @include sm-desktop{
+                padding: 20px;
+            }
+        }
+
+        @include xxl-desktop{
+            width: 55%;
+        }
+        @include smid-desktop{
+            width: 70%;
+        }
+        @include sm-desktop{
+            width: 90%;
+        }
+    }
+}
