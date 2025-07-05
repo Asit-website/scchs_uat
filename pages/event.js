@@ -519,13 +519,16 @@ export default function events(pageProp) {
                                         <Link href={`/eventdetail/${card?.id}/${card?.slug}`}>
                                             <button className="info-btn">
                                                 More Info <span className="arrow-icon"></span>
-                                                </button>
+                                            </button>
                                         </Link>
                                     </div>
                                 </div>
                             ))
                         )}
                     </div>
+                   
+
+
                     {visibleCount < cards.length && (
                         <div className="load-more-wrapper">
                             <button onClick={handleLoadMore} className="load-more-btn">

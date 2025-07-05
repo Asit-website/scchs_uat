@@ -265,38 +265,6 @@ export default function memberplan(pageProp) {
                   </table>
                 </div>
                 <button onClick={handleNext} type="button" className="scchs_hj_btn">Next</button>
-
-                {/* {showPayPal && selectedPlan && (
-                                <div className="mt-6">
-                                    <PayPalScriptProvider options={{ "client-id": "AQ5IvOr3xtXtOErP6Wwm9BYdiVPIZEvLr13wcS53uRxxWIuXYJL9l77bDYw5d7sJCme18awK5iEsTjAy", currency: "USD" }}>
-                                        <PayPalButtons
-                                            createOrder={(data, actions) => {
-                                                return actions.order.create({
-                                                    purchase_units: [
-                                                        {
-                                                            amount: {
-                                                                value: selectedPlan.price.toFixed(2),
-                                                            },
-                                                        },
-                                                    ],
-                                                });
-                                            }}
-                                            onApprove={async (data, actions) => {
-                                                const details = await actions.order.capture();
-                                                console.log(details);
-                                                handlePurchaseSuccess(details);
-                                            }}
-                                            onError={(err) => {
-                                                toast.error("PayPal error");
-                                                console.error(err);
-                                            }}
-                                        />
-                                    </PayPalScriptProvider>
-                                </div>
-                            )} */}
-
-
-
                 {showPaypal && selectedPlan && (
                   <PayPalScriptProvider options={{ "client-id": "AQ5IvOr3xtXtOErP6Wwm9BYdiVPIZEvLr13wcS53uRxxWIuXYJL9l77bDYw5d7sJCme18awK5iEsTjAy", currency: "USD" }}>
                     {
@@ -304,13 +272,7 @@ export default function memberplan(pageProp) {
                       You have already purchased this membership.
                     </div> :  
                      <PayPalButtons
-                    //  onClick={(data, actions) => {
-                    //   if (hasSameActivePlan) {
-                    //     alert("You already purchased this plan and it's still active.");
-                    //     return actions.reject();
-                    //   }
-                    //   return actions.resolve();
-                    // }}
+                   
                      style={{ layout: "vertical" }}
 
                      
@@ -341,13 +303,13 @@ export default function memberplan(pageProp) {
                          const details = await actions.order.capture();
                          console.log(details?.id);
                          console.log("Payment Successful:", details);
-                         //  console.log(details?.pri)
+                       
                          const payload = {
                            user_id: parseInt(instaUser.id),
                            membership_plan_id: parseInt(selectedPlan.id),
                            amount: selectedPlan.price.toFixed(2),
                            transaction_id: details.id,
-                           // status: "success", 
+                           
                            status: details?.status,
                            currency: "USD",
                            payment_gateway: "paypal"
@@ -383,77 +345,6 @@ export default function memberplan(pageProp) {
                    
                   </PayPalScriptProvider>
                 )}
-
-
-                {/* {showPaypal && (
-                                    <PayPalScriptProvider options={{ "client-id": "AQUoEi-7BxQtfIAz4ulCu1obszrCBZ5NXJQriaMbotUhBEa0_7yJLUrYG7QbTqpOJM-FyoViTuYduBZz", currency: "USD" }}>
-                                        <PayPalButtons
-                                            style={{ layout: "vertical" }}
-                                            createOrder={async (data, actions) => {
-                                                const amount = Number(selectedPlan?.price || 0).toFixed(2);
-                                                console.log("Creating PayPal order for amount:", amount);
-                                                return actions.order.create({
-                                                    purchase_units: [
-                                                        {
-                                                            amount: {
-                                                                value: amount,
-                                                            },
-                                                        },
-                                                    ],
-                                                });
-                                            }}
-                                            onApprove={async (data, actions) => {
-                                                try {
-                                                    const details = await actions.order.capture();
-                                                    console.log("Payment Successful:", details);
-
-                                                    // Map PayPal status to your Laravel API expected status
-                                                    const statusMap = {
-                                                        completed: "success",
-                                                        failed: "failed",
-                                                        pending: "pending",
-                                                    };
-
-                                                    const payload = {
-                                                        user_id: parseInt(instaUser.id),
-                                                        membership_plan_id: parseInt(selectedPlan.id),
-                                                        transaction_id: details.id,
-                                                        amount: parseFloat(selectedPlan.price).toFixed(2),
-                                                        currency: details.purchase_units?.[0]?.amount?.currency_code || "USD",
-                                                        status: statusMap[details.status.toLowerCase()] || "pending",
-                                                        payment_gateway: "paypal",
-                                                    };
-
-                                                    console.log("Sending payload to Laravel API:", payload);
-
-                                                    const response = await fetch("https://uat.scchs.co.in/api/membership/purchase", {
-                                                        method: "POST",
-                                                        headers: {
-                                                            "Content-Type": "application/json",
-                                                        },
-                                                        body: JSON.stringify(payload),
-                                                    });
-
-                                                    const result = await response.json();
-                                                    console.log("Laravel API response:", result);
-
-                                                    if (response.ok) {
-                                                        alert("Membership Purchased Successfully!");
-                                                    } else {
-                                                        alert("Error: " + result.message);
-                                                    }
-                                                } catch (error) {
-                                                    console.error("Error during payment or API call:", error);
-                                                    alert("Something went wrong while purchasing membership.");
-                                                }
-                                            }}
-                                            onError={(err) => {
-                                                console.error("PayPal Error:", err);
-                                                alert("PayPal payment failed.");
-                                            }}
-                                        />
-                                    </PayPalScriptProvider>
-                                )} */}
               </div>
             </div> :
               <div>
