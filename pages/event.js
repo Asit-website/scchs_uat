@@ -291,14 +291,31 @@ export default function events(pageProp) {
     // };
 
     const formatTime = (timeStr) => {
-        if (!timeStr || typeof timeStr !== 'string' || !timeStr.includes(':')) {
-            return ''; // or return 'Invalid time' or fallback value
+        if (
+            !timeStr ||
+            typeof timeStr !== 'string' ||
+            !/^\d{1,2}:\d{1,2}$/.test(timeStr)
+        ) {
+            return ''; // Invalid or unexpected format
         }
 
-        const [hour, minute] = timeStr.split(':');
+        const [hourStr, minuteStr] = timeStr.split(':');
+        const hour = parseInt(hourStr, 10);
+        const minute = parseInt(minuteStr, 10);
+
+        // Validate hour and minute ranges
+        if (
+            isNaN(hour) || isNaN(minute) ||
+            hour < 0 || hour > 23 ||
+            minute < 0 || minute > 59
+        ) {
+            return '';
+        }
+
         const date = new Date();
         date.setHours(hour);
         date.setMinutes(minute);
+        date.setSeconds(0); // optional
 
         return new Intl.DateTimeFormat('en-US', {
             hour: 'numeric',
@@ -306,6 +323,7 @@ export default function events(pageProp) {
             hour12: true,
         }).format(date);
     };
+
 
 
     return (
@@ -552,13 +570,16 @@ export default function events(pageProp) {
                                 return true;
                             });
 
+                            // Sort filtered data by date ascending (soonest event first)
+                            const sorted = filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+
                             return (
                                 <>
                                     <div className="card-grid">
-                                        {filtered.length === 0 ? (
+                                        {sorted.length === 0 ? (
                                             <p>No events found.</p>
                                         ) : (
-                                            filtered.slice(0, visibleCount).map((card, index) => (
+                                            sorted.slice(0, visibleCount).map((card, index) => (
                                                 <div className="event-card" key={index}>
                                                     <div className="card-header">
                                                         <span>
@@ -573,7 +594,7 @@ export default function events(pageProp) {
 
                                                         <span>{formatTime(card?.start_time)} - {formatTime(card?.end_time)}</span>
                                                     </div>
-                                                    <Link href={`/eventdetail?id=${card?.slug}`}>
+                                                    <Link href={`/eventdetail/${card?.id}/${card?.slug}`}>
                                                         <img
                                                             src={`https://uat.scchs.co.in/backend/admin/images/event_management/events/${card?.images[0]}`}
                                                             alt="Event"
@@ -597,7 +618,7 @@ export default function events(pageProp) {
                                     </div>
 
                                     {/* Load More Button Centered */}
-                                    {filtered.length > 6 && visibleCount < filtered.length && (
+                                    {sorted.length > 6 && visibleCount < sorted.length && (
                                         <div className="load-more-wrapper" style={{ textAlign: "center", marginTop: "20px" }}>
                                             <button onClick={handleLoadMore} className="load-more-btn">
                                                 Load More
@@ -614,6 +635,7 @@ export default function events(pageProp) {
                             );
                         })()
                     )}
+
 
 
                     {/* {visibleCount < cards.length && (

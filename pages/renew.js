@@ -81,10 +81,10 @@ export default function renew(pageProp) {
 
             const response = await fetch("https://uat.scchs.co.in/api/membership/renew", {
                 method: "POST",
-                headers: { 
+                headers: {
                     "Content-Type": "application/json",
-                     "Authorization": `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`
-                 },
+                    "Authorization": `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`
+                },
                 body: JSON.stringify(payload),
             });
 
@@ -117,7 +117,15 @@ export default function renew(pageProp) {
                             const now = new Date();
 
                             // Correct logic: now must be *after* endDate and *before* graceEndDate
-                            const isInGrace = now > endDate && now <= graceEndDate;
+                            // const isInGrace = now > endDate && now <= graceEndDate;
+
+                            const twoMonthsBeforeEnd = new Date(endDate);
+                            twoMonthsBeforeEnd.setMonth(twoMonthsBeforeEnd.getMonth() - 1);
+
+                            const isRenewVisible =
+                                (now >= twoMonthsBeforeEnd && now <= endDate) || // 2 months before expiry
+                                (now > endDate && now <= graceEndDate);          // grace period
+
 
                             return (
                                 <div className="membership-renew-card" key={plan.id}>
@@ -132,16 +140,21 @@ export default function renew(pageProp) {
 
                                     <p
                                         className="membership-renew-status"
-                                        style={{ color: isInGrace ? 'green' : 'red', fontWeight: 'bold' }}
+                                       style={{ color: now > endDate ? 'green' : 'red', fontWeight: 'bold' }}
+
+
                                     >
-                                        {isInGrace ? 'Grace Period' : 'Active'}
+                                        {now > endDate ? 'Grace Period' : 'Active'}
                                     </p>
                                     <button
                                         className="membership-renew-btn"
                                         onClick={() => handleRenew(plan)}
-                                        disabled={!isInGrace}
+                                        disabled={!isRenewVisible}
+
+
                                     >
-                                        {isInGrace ? 'Renew Now' : 'Renew Disabled'}
+                                        {/* {isInGrace ? 'Renew Now' : 'Renew Disabled'} */}
+                                        {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
                                     </button>
                                 </div>
                             );
