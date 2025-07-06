@@ -137,15 +137,41 @@ export default function renew(pageProp) {
                                             year: "numeric",
                                         })}
                                     </p>
+                                    <p className="membership-renew-dates">
+                                        Grace end date: {new Date(plan.grace_end_date).toLocaleDateString("en-US", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric",
+                                        })}
+                                    </p>
 
-                                    <p
+                                    {/* <p
                                         className="membership-renew-status"
-                                       style={{ color: now > endDate ? 'green' : 'red', fontWeight: 'bold' }}
+                                        style={{ color: now > endDate ? 'green' : 'red', fontWeight: 'bold' }}
 
 
                                     >
                                         {now > endDate ? 'Grace Period' : 'Active'}
+                                    </p> */}
+                                    <p
+                                        className="membership-renew-status"
+                                        style={{
+                                            color:
+                                                now > graceEndDate
+                                                    ? 'orange' // expired after grace
+                                                    : now > endDate
+                                                        ? 'green' // grace period
+                                                        : 'red',  // active
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {now > graceEndDate
+                                            ? 'Expired'
+                                            : now > endDate
+                                                ? 'Grace Period'
+                                                : 'Active'}
                                     </p>
+
                                     <button
                                         className="membership-renew-btn"
                                         onClick={() => handleRenew(plan)}
