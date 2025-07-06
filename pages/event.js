@@ -465,9 +465,21 @@ export default function events(pageProp) {
                                     return eventDate >= now;
                                 }
 
+                                // if (timeframe === 'past') {
+                                //     const now = new Date();
+                                //     return eventDate < now;
+                                // }
                                 if (timeframe === 'past') {
                                     const now = new Date();
-                                    return eventDate < now;
+                                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+                                    const eventDateOnly = new Date(
+                                        eventDate.getFullYear(),
+                                        eventDate.getMonth(),
+                                        eventDate.getDate()
+                                    );
+
+                                    return eventDateOnly < today;
                                 }
 
 
@@ -526,7 +538,7 @@ export default function events(pageProp) {
                             ))
                         )}
                     </div>
-                   
+
 
 
                     {visibleCount < cards.length && (

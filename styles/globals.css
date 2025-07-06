@@ -14170,3 +14170,7 @@ body {
     transform: translate(-50%, -60%);
   }
 }
+
+.sustom_drop::after{
+  top: 65% !important;
+}
