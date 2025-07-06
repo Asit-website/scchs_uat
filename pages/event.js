@@ -371,6 +371,7 @@ export default function events(pageProp) {
                                 </div>
 
                             </div>
+
                             <div className="event-title-filter">
                                 <div className="custom_drop">
                                     <select value={searchField} onChange={(e) => setSearchField(e.target.value)} className="dropdown small">
@@ -403,6 +404,7 @@ export default function events(pageProp) {
                                     </button>
                                 )}
                             </div>
+                            
                         </div>
 
                         {/* <div className="filters-right">
