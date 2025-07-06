@@ -291,38 +291,51 @@ export default function events(pageProp) {
     // };
 
     const formatTime = (timeStr) => {
-        if (
-            !timeStr ||
-            typeof timeStr !== 'string' ||
-            !/^\d{1,2}:\d{1,2}$/.test(timeStr)
-        ) {
-            return ''; // Invalid or unexpected format
+        if (!timeStr || typeof timeStr !== 'string') return '';
+
+        // Case 1: Already in 12-hour format like "4:00 PM" or "12:00 AM"
+        const ampmMatch = timeStr.match(/^(\d{1,2}):(\d{2})\s?(AM|PM)$/i);
+        if (ampmMatch) {
+            const date = new Date();
+            const [, hourStr, minuteStr, meridian] = ampmMatch;
+            let hour = Number(hourStr);
+            const minute = Number(minuteStr);
+
+            if (meridian.toUpperCase() === 'PM' && hour !== 12) hour += 12;
+            if (meridian.toUpperCase() === 'AM' && hour === 12) hour = 0;
+
+            date.setHours(hour, minute, 0, 0);
+            return date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
         }
 
-        const [hourStr, minuteStr] = timeStr.split(':');
-        const hour = parseInt(hourStr, 10);
-        const minute = parseInt(minuteStr, 10);
+        // Case 2: 24-hour string like "14:30"
+        const parts = timeStr.split(':');
+        if (parts.length !== 2) return '';
 
-        // Validate hour and minute ranges
+        const hour = Number(parts[0]);
+        const minute = Number(parts[1]);
+
         if (
             isNaN(hour) || isNaN(minute) ||
             hour < 0 || hour > 23 ||
             minute < 0 || minute > 59
-        ) {
-            return '';
-        }
+        ) return '';
 
         const date = new Date();
-        date.setHours(hour);
-        date.setMinutes(minute);
-        date.setSeconds(0); // optional
-
-        return new Intl.DateTimeFormat('en-US', {
+        date.setHours(hour, minute, 0, 0);
+        return date.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true,
-        }).format(date);
+            hour12: true
+        });
     };
+
+
+
 
 
 
