@@ -234,18 +234,62 @@ export default function eventdetail(pageProp) {
         });
     }
 
-    const formatTime = (timeStr) => {
-        if (!timeStr || !timeStr.includes(':')) return '';
-        const [hour, minute] = timeStr.split(':');
-        const date = new Date();
-        date.setHours(hour);
-        date.setMinutes(minute);
+    // const formatTime = (timeStr) => {
+    //     if (!timeStr || !timeStr.includes(':')) return '';
+    //     const [hour, minute] = timeStr.split(':');
+    //     const date = new Date();
+    //     date.setHours(hour);
+    //     date.setMinutes(minute);
 
-        return new Intl.DateTimeFormat('en-US', {
+    //     return new Intl.DateTimeFormat('en-US', {
+    //         hour: 'numeric',
+    //         minute: '2-digit',
+    //         hour12: true,
+    //     }).format(date);
+    // };
+
+     const formatTime = (timeStr) => {
+        if (!timeStr || typeof timeStr !== 'string') return '';
+
+        // Case 1: Already in 12-hour format like "4:00 PM" or "12:00 AM"
+        const ampmMatch = timeStr.match(/^(\d{1,2}):(\d{2})\s?(AM|PM)$/i);
+        if (ampmMatch) {
+            const date = new Date();
+            const [, hourStr, minuteStr, meridian] = ampmMatch;
+            let hour = Number(hourStr);
+            const minute = Number(minuteStr);
+
+            if (meridian.toUpperCase() === 'PM' && hour !== 12) hour += 12;
+            if (meridian.toUpperCase() === 'AM' && hour === 12) hour = 0;
+
+            date.setHours(hour, minute, 0, 0);
+            return date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+
+        // Case 2: 24-hour string like "14:30"
+        const parts = timeStr.split(':');
+        if (parts.length !== 2) return '';
+
+        const hour = Number(parts[0]);
+        const minute = Number(parts[1]);
+
+        if (
+            isNaN(hour) || isNaN(minute) ||
+            hour < 0 || hour > 23 ||
+            minute < 0 || minute > 59
+        ) return '';
+
+        const date = new Date();
+        date.setHours(hour, minute, 0, 0);
+        return date.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true,
-        }).format(date);
+            hour12: true
+        });
     };
 
 
