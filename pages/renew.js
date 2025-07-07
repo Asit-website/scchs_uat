@@ -211,7 +211,7 @@ export default function renew(pageProp) {
                                         })}
                                     </p>
 
-                                    <p
+                                    {/* <p
                                         className="membership-renew-status"
                                         style={{
                                             color:
@@ -228,15 +228,30 @@ export default function renew(pageProp) {
                                             : now > endDate
                                                 ? 'Grace Period'
                                                 : 'Active'}
-                                    </p>
-
-                                    <button
-                                        className="membership-renew-btn"
-                                        onClick={() => handleRenew(plan)}
-                                        disabled={!isRenewVisible}
-                                    >
-                                        {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
-                                    </button>
+                                    </p> */}
+                                    <div className="ren_dis">
+                                        <span
+                                            className={`status-badge ${now > graceEndDate
+                                                ? 'expired'
+                                                : now > endDate
+                                                    ? 'grace'
+                                                    : 'active'
+                                                }`}
+                                        >
+                                            {now > graceEndDate
+                                                ? 'Expired'
+                                                : now > endDate
+                                                    ? 'Grace Period'
+                                                    : 'Active'}
+                                        </span>
+                                        <button
+                                            className="membership-renew-btn"
+                                            onClick={() => handleRenew(plan)}
+                                            disabled={!isRenewVisible}
+                                        >
+                                            {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
+                                        </button>
+                                    </div>
                                 </div>
                             );
                         })}

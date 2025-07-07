@@ -112,7 +112,7 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   opacity: 1;
   transition: opacity 0.3s ease, background-color 0.3s ease;
 }
@@ -132,6 +132,37 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: bold;
+}
+.status-badge {
+  display: inline-block;
+  /* padding: 4px 10px;
+  border-radius: 12px; */
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+    padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  opacity: 1;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.status-badge.active {
+  background-color: #28a745; /* Green */
+}
+
+.status-badge.grace {
+  background-color: #ff9800; /* Orange */
+}
+
+.status-badge.expired {
+  background-color: #f44336; /* Red */
+}
+.ren_dis{
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 /* ============renew css end=============== */
 
