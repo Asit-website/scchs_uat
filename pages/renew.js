@@ -177,7 +177,7 @@ export default function renew(pageProp) {
                                 </div>
                             );
                         })} */}
-
+                        <div className="membership-renew-main">
                         {membershipPlans.map((plan) => {
                             const endDate = new Date(plan.end_date);
                             const graceEndDate = new Date(plan.grace_end_date);
@@ -255,6 +255,7 @@ export default function renew(pageProp) {
                                 </div>
                             );
                         })}
+                        </div>
 
 
                         {selectedPlan && (
