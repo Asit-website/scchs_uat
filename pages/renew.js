@@ -111,20 +111,19 @@ export default function renew(pageProp) {
                 <div className="event_main">
                     <div className="membership-renew-container">
                         <h2 className="membership-renew-heading">Your Membership Plans</h2>
-                        {membershipPlans.map((plan) => {
+                        {/* {membershipPlans.map((plan) => {
                             const endDate = new Date(plan.end_date);
                             const graceEndDate = new Date(plan.grace_end_date);
                             const now = new Date();
 
-                            // Correct logic: now must be *after* endDate and *before* graceEndDate
-                            // const isInGrace = now > endDate && now <= graceEndDate;
+                            
 
                             const twoMonthsBeforeEnd = new Date(endDate);
                             twoMonthsBeforeEnd.setMonth(twoMonthsBeforeEnd.getMonth() - 1);
 
                             const isRenewVisible =
-                                (now >= twoMonthsBeforeEnd && now <= endDate) || // 2 months before expiry
-                                (now > endDate && now <= graceEndDate);          // grace period
+                                (now >= twoMonthsBeforeEnd && now <= endDate) || 
+                                (now > endDate && now <= graceEndDate);          
 
 
                             return (
@@ -145,23 +144,16 @@ export default function renew(pageProp) {
                                         })}
                                     </p>
 
-                                    {/* <p
-                                        className="membership-renew-status"
-                                        style={{ color: now > endDate ? 'green' : 'red', fontWeight: 'bold' }}
-
-
-                                    >
-                                        {now > endDate ? 'Grace Period' : 'Active'}
-                                    </p> */}
+                                  
                                     <p
                                         className="membership-renew-status"
                                         style={{
                                             color:
                                                 now > graceEndDate
-                                                    ? 'orange' // expired after grace
+                                                    ? 'orange' 
                                                     : now > endDate
-                                                        ? 'green' // grace period
-                                                        : 'red',  // active
+                                                        ? 'green' 
+                                                        : 'red',  
                                             fontWeight: 'bold',
                                         }}
                                     >
@@ -179,12 +171,76 @@ export default function renew(pageProp) {
 
 
                                     >
-                                        {/* {isInGrace ? 'Renew Now' : 'Renew Disabled'} */}
+                                       
+                                        {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
+                                    </button>
+                                </div>
+                            );
+                        })} */}
+
+                        {membershipPlans.map((plan) => {
+                            const endDate = new Date(plan.end_date);
+                            const graceEndDate = new Date(plan.grace_end_date);
+                            const now = new Date();
+
+                            const twoMonthsBeforeEnd = new Date(endDate);
+                            twoMonthsBeforeEnd.setMonth(twoMonthsBeforeEnd.getMonth() - 1);
+
+                            const isRenewVisible =
+                                (now >= twoMonthsBeforeEnd && now <= endDate) || // within 1 month before expiry
+                                (now > endDate && now <= graceEndDate) ||        // grace period
+                                (now > graceEndDate);                            // expired
+
+                            return (
+                                <div className="membership-renew-card" key={plan.id}>
+                                    <h3 className="membership-renew-name">{plan.plan?.name}</h3>
+
+                                    <p className="membership-renew-dates">
+                                        Expired on: {new Date(plan.end_date).toLocaleDateString("en-US", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric",
+                                        })}
+                                    </p>
+
+                                    <p className="membership-renew-dates">
+                                        Grace end date: {new Date(plan.grace_end_date).toLocaleDateString("en-US", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric",
+                                        })}
+                                    </p>
+
+                                    <p
+                                        className="membership-renew-status"
+                                        style={{
+                                            color:
+                                                now > graceEndDate
+                                                    ? 'red'
+                                                    : now > endDate
+                                                        ? 'orange'
+                                                        : 'green',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {now > graceEndDate
+                                            ? 'Expired'
+                                            : now > endDate
+                                                ? 'Grace Period'
+                                                : 'Active'}
+                                    </p>
+
+                                    <button
+                                        className="membership-renew-btn"
+                                        onClick={() => handleRenew(plan)}
+                                        disabled={!isRenewVisible}
+                                    >
                                         {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
                                     </button>
                                 </div>
                             );
                         })}
+
 
                         {selectedPlan && (
                             <div className="membership-renew-paypal-box">
