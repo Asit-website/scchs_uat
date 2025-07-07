@@ -169,10 +169,26 @@ export default function Cart(props) {
     };
 
     const handlePhoneChange = (value) => {
+         const numericValue = value.replace(/\D/g, ''); // Remove non-digits
+
         setAddressDetail((prev) => ({
             ...prev,
             phone: value,
         }));
+
+         if (numericValue.length < 11) {
+            setErrors((prev) => ({
+                ...prev,
+                phone: 'Phone number must be at least 10 digits',
+            }));
+        }
+
+        else {
+            setErrors((prev) => ({
+                ...prev,
+                phone: '',
+            }));
+        }
     };
 
     const [countries, setCountries] = useState([]);

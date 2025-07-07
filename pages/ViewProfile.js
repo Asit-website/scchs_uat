@@ -82,6 +82,7 @@ const UserProfile = () => {
                 value={form?.[key] || ""}
                 onChange={handleChange}
                 className="viewprofile1-input"
+                maxLength={key === "mobile_number" ? 11 : undefined}
               />
             ) : (
               <p className="viewprofile1-text">{form?.[key] || "-"}</p>

@@ -9,12 +9,12 @@ import Link from "next/link";
 
 
 var settingsMorePhotos = {
-        arrows: true,
-        dots: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
+    arrows: true,
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+};
 
 const records = [
     {
@@ -87,7 +87,7 @@ const itemsPerPage = 3;
 export default function archieve(pageProp) {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchInput,setSearchInput] = useState("")
+    const [searchInput, setSearchInput] = useState("")
     const [withImagesOnly, setWithImagesOnly] = useState(false);
 
     const normalize = str => str.toLowerCase().replace(/\s+/g, '').trim();
@@ -129,6 +129,12 @@ export default function archieve(pageProp) {
                                 setSearchInput(e.target.value);
                                 setCurrentPage(1);
                             }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    setSearchTerm(searchInput);
+                                }
+                            }}
+
                         />
                         <button onClick={() => setSearchTerm(searchInput)} className="ks-search-button">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -281,7 +287,7 @@ export async function getServerSideProps(context) {
 //         imagePlaceholder: true,
 //     },
 //     {
-//         title: "2008.006.175 - Folder", 
+//         title: "2008.006.175 - Folder",
 //         description: "Land Entry, Survey",
 //         recordType: "Archive",
 //         buttonText: "Know More",
@@ -376,7 +382,7 @@ export async function getServerSideProps(context) {
 //                             onClick={() => handleClick(currentPage + 1)}
 //                             disabled={currentPage === totalPages}
 //                         >
-//                            <span>Next</span> 
+//                            <span>Next</span>
 //                             <svg width="6" height="12" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 //                                 <path d="M2.13115 0.5L0.368652 2.2625L6.09365 8L0.368652 13.7375L2.13115 15.5L9.63115 8L2.13115 0.5Z" fill="#666D76" />
 //                             </svg>

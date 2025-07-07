@@ -32,6 +32,7 @@ export default function business(pageProp) {
             try {
                 const res = await fetch("https://uat.scchs.co.in/api/businesses");
                 const data = await res.json();
+                console.log(data);
                 setBusinesses(data);
             } catch (error) {
                 console.error("Error fetching businesses:", error);
@@ -47,6 +48,7 @@ export default function business(pageProp) {
             try {
                 const res = await fetch("https://uat.scchs.co.in/api/business-categories");
                 const data = await res.json();
+                console.log(data);
                 setCategories(data);
             } catch (error) {
                 console.error("Error fetching categories:", error);

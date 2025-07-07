@@ -54,7 +54,7 @@ export default function eventhistory(pageProp) {
             <div className="donation-payment-history-wrapper">
                 <h1 className="donation-payment-history-title">Donation Payment History</h1>
                 <div className="donation-payment-history-grid">
-                    {donations.map((donation) => (
+                    {/* {donations.map((donation) => (
 
                         <div key={donation.id} className="donation-payment-history-card">
                             <div className="donation-payment-history-amount">$ {donation.donation_amount}</div>
@@ -65,41 +65,51 @@ export default function eventhistory(pageProp) {
                                 <div>City: {donation.city}, {donation.state}</div>
                                 <div>Status: <span className={donation.payment_status === "completed" ? "status-success" : "status-failed"}>{donation.payment_status}</span></div>
                                 <div className="donation-payment-history-date">
-                                    {/* Date: {new Date(donation.created_at).toLocaleString("en-US", {
-                                        // year: "numeric",
-                                        // month: "long",
-                                        // day: "numeric",
-                                        // hour: "numeric",
-                                        // minute: "2-digit",
-                                        // hour12: true,
-                                    })} */}
+                                    
 
                                     Date: {new Date(donation.created_at).toLocaleString("en-US", {
                                         month: "long",
                                         day: "numeric",
                                         year: "numeric",
-                                        // hour: "numeric",
-                                        // minute: "2-digit",
-                                        // hour12: true,
-                                        // timeZone: "America/New_York",
+                                        
                                     })}
 
-                                    {/* Date: {new Date(donation.created_at).toLocaleString("en-US", {
-                                        month: "long",
-                                        day: "numeric",
-                                        year: "numeric",
-                                        hour: "numeric",
-                                        minute: "2-digit",
-                                        hour12: true,
-                                        timeZone: "America/Chicago"
-                                    })} CST */}
+                                    
 
                                 </div>
 
                             </div>
                         </div>
 
-                    ))}
+                    ))} */}
+                    {donations.length === 0 ? (
+                        <p className="donation-history-empty-message">No donation history found.</p>
+                    ) : (
+                        donations.map((donation) => (
+                            <div key={donation.id} className="donation-payment-history-card">
+                                <div className="donation-payment-history-amount">$ {donation.donation_amount}</div>
+                                <div className="donation-payment-history-info">
+                                    <div>Donor: {donation.first_name} {donation.last_name}</div>
+                                    <div>Email: {donation.email}</div>
+                                    <div>Phone: {donation.phone}</div>
+                                    <div>City: {donation.city}, {donation.state}</div>
+                                    <div>Status:
+                                        <span className={donation.payment_status === "completed" ? "status-success" : "status-failed"}>
+                                            {donation.payment_status}
+                                        </span>
+                                    </div>
+                                    <div className="donation-payment-history-date">
+                                        Date: {new Date(donation.created_at).toLocaleDateString("en-US", {
+                                            month: "long",
+                                            day: "numeric",
+                                            year: "numeric",
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )}
+
                 </div>
             </div>
 

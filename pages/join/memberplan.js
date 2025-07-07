@@ -196,7 +196,7 @@ export default function memberplan(pageProp) {
                 </p>
                 <p className="scchs-note">
                   NOTE: If you are already a member you should{" "}
-                  <a href="/signin" className="scchs-sign-in-link">
+                  <a href="/user/userlogin" className="scchs-sign-in-link">
                     SIGN IN
                   </a>{" "}
                   and do an Online Renew instead of an Online Join.

@@ -5397,8 +5397,14 @@ justify-content: center !important;
   position: relative;
   display: inline-block;
   width: 100%;
-  min-width: 216px;
+  /* min-width: 216px; */
   /* adjust as needed */
+}
+.donation-history-empty-message {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  margin-top: 20px;
 }
 
 .dropdown small {
@@ -6021,7 +6027,10 @@ justify-content: center !important;
   font-family: "Euclid-Medium";
   border-radius: 6px;
 }
-
+.payment_right button:hover{
+  background-color: rgba(171, 5, 53, 1);
+  color: white;
+}
 /* ==============event detail page end========================= */
 
 
@@ -9600,7 +9609,8 @@ label {
 }
 
 .ticket-btn:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(0, 49, 92, 1);
+  color: white;
 }
 
 .modal-overlay {

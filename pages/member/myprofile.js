@@ -1201,7 +1201,7 @@ export default function myprofile(pageProp) {
                         </button> */}
                     <div className="newsection1-wrapper">
                         <div className="newsection1-inner">
-                            {!onlySingleMemberPlans   && validPlans.length>0 && (
+                            {!onlySingleMemberPlans && validPlans.length > 0 && (
                                 <select
                                     value={selectedPlanId}
                                     onChange={(e) => setSelectedPlanId(e.target.value)}
@@ -1393,6 +1393,7 @@ export default function myprofile(pageProp) {
                                             <PhoneInput
                                                 className="test_inpuy"
                                                 country={'us'}
+
                                                 value={formData1.mobile_number}
                                                 onChange={handlePhoneChange}
                                                 //  className="nameform-input"
@@ -1400,6 +1401,7 @@ export default function myprofile(pageProp) {
                                                     name: 'mobile_number',
                                                     required: true,
                                                     autoFocus: false,
+                                                    maxLength: 11
                                                 }}
                                                 countryCodeEditable={false}
                                             />
