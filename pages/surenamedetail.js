@@ -33,6 +33,7 @@ var settingsMorePhotos = {
 // };
 
 export default function surenamelook(pageProp) {
+    const [hoveredBtn, setHoveredBtn] = useState("");
 
     const printRef = useRef();
 
@@ -157,10 +158,48 @@ export default function surenamelook(pageProp) {
 
             <div className="event_system_main event_system_main1">
                 <div className="event_main">
-                    <div className="surname-btn-group">
+                    {/* <div className="surname-btn-group">
                         <button onClick={handlePrint} className="btn-primary">Print</button>
                         <Link href={"/surenamelook"}><button className="btn-outline">Back</button></Link>
-                    </div>
+                    </div> */}
+                      <div className="surname-btn-group" style={{ display: "flex", gap: "10px" }}>
+      {/* Print Button */}
+      <button
+        onClick={handlePrint}
+        onMouseEnter={() => setHoveredBtn("print")}
+        onMouseLeave={() => setHoveredBtn("")}
+        style={{
+          backgroundColor: hoveredBtn === "print" ? "#ab0535" : "#00315c", // 🔁 Blue default, red on hover
+          color: "#fff",
+          padding: "10px 20px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          transition: "background-color 0.3s",
+        }}
+      >
+        Print
+      </button>
+
+      {/* Back Button */}
+      <Link href="/surenamelook">
+        <button
+          onMouseEnter={() => setHoveredBtn("back")}
+          onMouseLeave={() => setHoveredBtn("")}
+          style={{
+            backgroundColor: hoveredBtn === "back" ? "#ab0535" : "#ffffff", // 🔁 White default, blue on hover
+            color: hoveredBtn === "back" ? "#ffffff" : "#000000",
+            padding: "10px 20px",
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+          }}
+        >
+          Back
+        </button>
+      </Link>
+    </div>
                     <div className="surname-details-wrapper">
                         <div className="surname-details-grid" ref={printRef}>
                             {data?.surname && <><div>Surname</div>

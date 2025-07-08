@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import GlobalHeaderFooter from "../utils/common/global-header-footer";
+import { useRouter } from "next/navigation";
 
 const UserProfile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const user = localStorage.getItem("scchs_User");
@@ -29,12 +31,27 @@ const UserProfile = () => {
 
   const toggleEdit = () => {
     if (isEdit) {
+
       localStorage.setItem("scchs_User", JSON.stringify(form));
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 3000); // Auto hide after 3s
+      router.refresh();
+      setTimeout(() => setShowPopup(false), 3000);
     }
     setIsEdit(!isEdit);
   };
+
+
+  useEffect(() => {
+   const user = JSON.parse(localStorage.getItem("scchs_User"))
+    if (user) {
+      try {
+        setForm(user);
+      } catch (err) {
+        console.error("Failed to parse user data", err);
+      }
+    }
+    setLoading(false);
+  }, [isEdit])
 
   if (loading) return <p>Loading...</p>;
 
@@ -42,7 +59,6 @@ const UserProfile = () => {
     <div className="viewprofile1-container">
       <h2 className="viewprofile1-title">User Profile</h2>
 
-      {/* ✅ Success Message Popup */}
       {showPopup && (
         <div className="popup-toast">✅ Your profile is updated</div>
       )}
@@ -82,7 +98,6 @@ const UserProfile = () => {
                 value={form?.[key] || ""}
                 onChange={handleChange}
                 className="viewprofile1-input"
-                maxLength={key === "mobile_number" ? 11 : undefined}
               />
             ) : (
               <p className="viewprofile1-text">{form?.[key] || "-"}</p>

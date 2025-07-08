@@ -263,8 +263,19 @@ export default function contribute(pageProp) {
                             {/* <button>Confirm & Pay with Paypal</button> */}
                             {!showPayPal ? (
                                 <>
-                                    <button onClick={handleEditClick}>Edit Save</button>
                                     <button
+                                            style={{
+                                                transition: "background-color 0.3s ease",
+                                              }}
+                                              onMouseEnter={(e) => (e.target.style.backgroundColor = "#ab0635")}
+                                              onMouseLeave={(e) => (e.target.style.backgroundColor = "")}
+                                      onClick={handleEditClick}>Edit Save</button>
+                                    <button
+                                            style={{
+                                                transition: "background-color 0.3s ease",
+                                              }}
+                                              onMouseEnter={(e) => (e.target.style.backgroundColor = "#ab0635")}
+                                              onMouseLeave={(e) => (e.target.style.backgroundColor = "")}
                                         onClick={() => setShowPayPal(true)}
                                         // disabled={!isVerified}
                                         // style={{
