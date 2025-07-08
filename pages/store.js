@@ -210,7 +210,7 @@ export default function store(pageProp) {
             <div className="event_system_main">
                 <div className="store_heading">
                     <h2>SCCHS Store</h2>
-                    <p>Members must be logged-in to receive a 10% or greater discount on items in the bookstore. The discount does not apply to events. If you are not a member and would like information about becoming one <Link href="/membership-information-join-us"><span>CLICK HERE</span></Link></p>
+                    <p>Members must be logged-in to receive a 10% or greater discount on items in the bookstore. The discount does not apply to events. If you are not a member and would like information about becoming one <Link href="/membership-information-join-us"><span className="hover-link">CLICK HERE</span></Link></p>
                 </div>
                 <div className="event_main">
                     <div className="filters-container">
@@ -220,7 +220,8 @@ export default function store(pageProp) {
                             <div className="event-title-filter ev_tight_fill">
                                 <div className="custom_drop">
                                     <select value={selectedSlug} onChange={(e) => setSelectedSlug(e.target.value)} className="dropdown small" id="dropdownnn">
-                                        <option value="">Filter by category</option>
+                                        {/* <option value="">Filter by category</option> */}
+                                        <option value="">All</option>
                                         {
                                             allCategory?.map((item, index) => {
                                                 return <option key={item.id} value={item?.slug}>{item?.name}</option>
