@@ -1401,7 +1401,6 @@ export default function myprofile(pageProp) {
                                                     name: 'mobile_number',
                                                     required: true,
                                                     autoFocus: false,
-                                                    maxLength: 11
                                                 }}
                                                 countryCodeEditable={false}
                                             />

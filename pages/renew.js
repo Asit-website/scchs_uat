@@ -178,40 +178,40 @@ export default function renew(pageProp) {
                             );
                         })} */}
                         <div className="membership-renew-main">
-                        {membershipPlans.map((plan) => {
-                            const endDate = new Date(plan.end_date);
-                            const graceEndDate = new Date(plan.grace_end_date);
-                            const now = new Date();
+                            {membershipPlans.map((plan) => {
+                                const endDate = new Date(plan.end_date);
+                                const graceEndDate = new Date(plan.grace_end_date);
+                                const now = new Date();
 
-                            const twoMonthsBeforeEnd = new Date(endDate);
-                            twoMonthsBeforeEnd.setMonth(twoMonthsBeforeEnd.getMonth() - 1);
+                                const twoMonthsBeforeEnd = new Date(endDate);
+                                twoMonthsBeforeEnd.setMonth(twoMonthsBeforeEnd.getMonth() - 1);
 
-                            const isRenewVisible =
-                                (now >= twoMonthsBeforeEnd && now <= endDate) || // within 1 month before expiry
-                                (now > endDate && now <= graceEndDate) ||        // grace period
-                                (now > graceEndDate);                            // expired
+                                const isRenewVisible =
+                                    (now >= twoMonthsBeforeEnd && now <= endDate) || // within 1 month before expiry
+                                    (now > endDate && now <= graceEndDate) ||        // grace period
+                                    (now > graceEndDate);                            // expired
 
-                            return (
-                                <div className="membership-renew-card" key={plan.id}>
-                                    <h3 className="membership-renew-name">{plan.plan?.name}</h3>
+                                return (
+                                    <div className="membership-renew-card" key={plan.id}>
+                                        <h3 className="membership-renew-name">{plan.plan?.name}</h3>
 
-                                    <p className="membership-renew-dates">
-                                        Expired on: {new Date(plan.end_date).toLocaleDateString("en-US", {
-                                            month: "long",
-                                            day: "numeric",
-                                            year: "numeric",
-                                        })}
-                                    </p>
+                                        <p className="membership-renew-dates">
+                                            Expired on: {new Date(plan.end_date).toLocaleDateString("en-US", {
+                                                month: "long",
+                                                day: "numeric",
+                                                year: "numeric",
+                                            })}
+                                        </p>
 
-                                    <p className="membership-renew-dates">
-                                        Grace end date: {new Date(plan.grace_end_date).toLocaleDateString("en-US", {
-                                            month: "long",
-                                            day: "numeric",
-                                            year: "numeric",
-                                        })}
-                                    </p>
+                                        <p className="membership-renew-dates">
+                                            Grace end date: {new Date(plan.grace_end_date).toLocaleDateString("en-US", {
+                                                month: "long",
+                                                day: "numeric",
+                                                year: "numeric",
+                                            })}
+                                        </p>
 
-                                    {/* <p
+                                        {/* <p
                                         className="membership-renew-status"
                                         style={{
                                             color:
@@ -229,32 +229,42 @@ export default function renew(pageProp) {
                                                 ? 'Grace Period'
                                                 : 'Active'}
                                     </p> */}
-                                    <div className="ren_dis">
-                                        <span
-                                            className={`status-badge ${now > graceEndDate
-                                                ? 'expired'
-                                                : now > endDate
-                                                    ? 'grace'
-                                                    : 'active'
-                                                }`}
-                                        >
-                                            {now > graceEndDate
-                                                ? 'Expired'
-                                                : now > endDate
-                                                    ? 'Grace Period'
-                                                    : 'Active'}
-                                        </span>
-                                        <button
+                                        <div className="ren_dis">
+                                            <span
+                                                className={`status-badge ${now > graceEndDate
+                                                    ? 'expired'
+                                                    : now > endDate
+                                                        ? 'grace'
+                                                        : 'active'
+                                                    }`}
+                                            >
+                                                {now > graceEndDate
+                                                    ? 'Expired'
+                                                    : now > endDate
+                                                        ? 'Grace Period'
+                                                        : 'Active'}
+                                            </span>
+                                            {/* <button
                                             className="membership-renew-btn"
                                             onClick={() => handleRenew(plan)}
                                             disabled={!isRenewVisible}
                                         >
                                             {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
-                                        </button>
+                                        </button> */}
+                                            {now <= graceEndDate && (
+                                                <button
+                                                    className="membership-renew-btn"
+                                                    onClick={() => handleRenew(plan)}
+                                                    disabled={!isRenewVisible}
+                                                >
+                                                    {isRenewVisible ? 'Renew Now' : 'Renew Disabled'}
+                                                </button>
+                                            )}
+
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
                         </div>
 
 

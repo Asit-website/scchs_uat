@@ -1004,7 +1004,7 @@ export default function Navbar(props) {
                 </li>
 
               }
-              {instaUser && <li className="test_sign"><a>Hi <span style={{ fontWeight: "bold" }}>{instaUser?.first_name}</span></a></li>}
+              {instaUser && <li className="test_sign"><a>Hi, <span style={{ fontWeight: "bold" }}>{instaUser?.first_name}</span></a></li>}
             </ul>
           </div>
         </div>
@@ -1271,7 +1271,7 @@ export default function Navbar(props) {
                   <li><a href="/donationhistory">Donation History</a></li>
                   <li><a href="/storeorder">View Cart</a></li>
                   <li><a href="/join/memberplan">{membershipStatus === "active" ? "Purchase another plan" : "Purchase Plan"}</a></li>
-                  {membershipStatus === "active" && <li><a style={{ cursor: "pointer" }} onClick={handleRenewClick}>Renew Online</a></li>}
+                  {membershipStatus === "active" && <li><a href="/renew" style={{ cursor: "pointer" }}>Renew Online</a></li>}
                 </ul>
               )}
             </div>}
