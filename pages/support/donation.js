@@ -381,7 +381,7 @@ export default function donation(pageProp) {
                     </p>
                     <div className="box_1">
                         <p className="box-paragraph">You may make an online donation.</p>
-                        <a href="#fghj">Click Here</a>
+                        <a className="hov-link" href="#fghj">Click Here</a>
                     </div>
                     <p className="donation-of-papers">
                         Donations of papers, photographs, books and other miscellaneous documents

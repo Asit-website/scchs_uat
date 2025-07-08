@@ -136,7 +136,7 @@ export default function archieve(pageProp) {
                             }}
 
                         />
-                        <button onClick={() => setSearchTerm(searchInput)} className="ks-search-button">
+                        <button  onClick={() => setSearchTerm(searchInput)} className="ks-search-button">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.7547 13.7078V13.9149L14.9012 14.0614L19.4113 18.5713L18.5724 19.4111L14.0604 14.9006L13.7497 14.59L13.4017 14.8581C11.7892 16.1004 9.76435 16.6824 7.73832 16.4858C5.71229 16.2893 3.83703 15.329 2.49341 13.7999C1.14979 12.2709 0.438561 10.2878 0.504167 8.25341C0.569772 6.21901 1.40729 4.28585 2.84664 2.84656C4.28598 1.40727 6.21921 0.56977 8.2537 0.504166C10.2882 0.438563 12.2714 1.14977 13.8005 2.49335C15.3295 3.83692 16.2899 5.7121 16.4864 7.73805C16.683 9.764 16.101 11.7888 14.8587 13.4012L14.7547 13.5361V13.7064V13.7078Z" fill="#a00036" stroke="white" />
                             </svg>
@@ -158,7 +158,7 @@ export default function archieve(pageProp) {
                         <strong>{filteredRecords.length} Search Hints:</strong> To search by phrase wrap your criteria in quotes. ex: "Find me"
                     </p>
                     <p className="ks-result-count">
-                        <strong>{filteredRecords.length}</strong> Results found. Records searched: <strong>3627</strong>
+                        <strong>{filteredRecords.length}</strong> Results found. Records searched: <strong>9</strong>
                     </p>
                 </div>
 

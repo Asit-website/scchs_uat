@@ -5026,6 +5026,9 @@ justify-content: center !important;
   width: 100%;
   position: relative;
 }
+.scchs_searchbarbutton:hover{
+  background-color: rgb(211, 58, 101);
+}
 
 .scchs_searchbar input {
   padding: 10px 20px;
@@ -5563,6 +5566,8 @@ justify-content: center !important;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
+  gap: 1px;
+  min-height: 595px;
   flex-direction: column;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -7429,6 +7434,9 @@ th {
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 1rem;
+}
+.ks-search-button:hover{
+  background-color: #a32146 !important;
 }
 
 .ks-checkbox-label {
@@ -9665,11 +9673,20 @@ label {
   cursor: pointer;
   width: 100%;
 }
+.modal-submit:hover{
+  background-color:#ab0535;
+}
 
+.modal-close:hover{
+  background-color: #ab0535;
+  color: white;
+}
 .modal-close {
   background: none;
   border: none;
+  border-radius: 5px;
   color: #555;
+  padding: 10px;
   margin-top: 12px;
   cursor: pointer;
   text-align: center;
@@ -14237,4 +14254,16 @@ body {
 
 .sustom_drop::after{
   top: 65% !important;
+}
+
+.hover-link {
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.hover-link:hover {
+  color: #00315c;
+}
+.hov-link:hover{
+  background-color: rgba(171, 5, 53, 1);
 }
