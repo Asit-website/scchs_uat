@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import HeadSEO1 from "../components/common/Head/head1";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ChevronDown } from "lucide-react";
 
 export default function cementryrecord(pageProp) {
   const [counties, setCounties] = useState([]);
@@ -175,15 +176,56 @@ export default function cementryrecord(pageProp) {
                 </div>
 
                 <div className="filters-right">
-                  <div className="dropdown-group">
+                  {/* <div className="dropdown-group">
                     <label>Results Per Page</label>
                     <select value={resultsPerPage} onChange={handlePerPageChange}>
                       <option value="50">50</option>
                       <option value="100">100</option>
                     </select>
+                  </div> */}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
+                    <label style={{ marginBottom: '6px', fontSize: '14px', fontWeight: '500' }}>
+                      Results Per Page
+                    </label>
+
+                    <div style={{ position: 'relative' }}>
+                      <select
+                        value={resultsPerPage}
+                        onChange={handlePerPageChange}
+                        style={{
+                          width: '100%',
+                          height: '36px',
+                          padding: '0 36px 0 12px',
+                          fontSize: '14px',
+                          borderRadius: '4px',
+                          border: '1px solid #ccc',
+                          appearance: 'none',
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          backgroundColor: '#fff',
+                        }}
+                      >
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>
+
+                      {/* Icon */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          right: '12px',
+                          transform: 'translateY(-50%)',
+                          pointerEvents: 'none',
+                        }}
+                      >
+                        <ChevronDown size={18} color="#222" />
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="dropdown-group">
+                  {/* <div className="dropdown-group">
                     <label>Jump to Page</label>
                     <select value={currentPage} onChange={handlePageJump}>
                       {[...Array(totalPages)].map((_, i) => (
@@ -192,6 +234,50 @@ export default function cementryrecord(pageProp) {
                         </option>
                       ))}
                     </select>
+                  </div> */}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
+                    <label style={{ marginBottom: '6px', fontSize: '14px', fontWeight: '500' }}>
+                      Jump to Page
+                    </label>
+
+                    <div style={{ position: 'relative' }}>
+                      <select
+                        value={currentPage}
+                        onChange={handlePageJump}
+                        style={{
+                          width: '100%',
+                          height: '36px',
+                          padding: '0 36px 0 12px',
+                          fontSize: '14px',
+                          borderRadius: '4px',
+                          border: '1px solid #ccc',
+                          appearance: 'none',
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'none',
+                          backgroundColor: '#fff',
+                        }}
+                      >
+                        {[...Array(totalPages)].map((_, i) => (
+                          <option key={i} value={i + 1}>
+                            {String(i + 1).padStart(2, "0")}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* Icon */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          right: '16px',
+                          transform: 'translateY(-50%)',
+                          pointerEvents: 'none',
+                        }}
+                      >
+                        <ChevronDown size={18} color="#222" />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="listing-info">

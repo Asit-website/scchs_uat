@@ -1346,7 +1346,12 @@ export default function myprofile(pageProp) {
                                     <div><strong className="lable1">Use Maiden Name:</strong>{memberships[0]?.user.maiden_name}</div>
                                     <div><strong className="lable1">Suffix:</strong>{memberships[0]?.user.suffix}</div>
                                     {/* <div><strong className="lable1">Photo:</strong> No</div> */}
-                                    <div><strong className="lable1">Date of birth:</strong>{memberships[0]?.user.dobMonth} {memberships[0]?.user.dob}{memberships[0]?.user.dobYear}</div>
+                                    {/* <div><strong className="lable1">Date of birth:</strong>{memberships[0]?.user.dobMonth} {memberships[0]?.user.dob}{memberships[0]?.user.dobYear}</div> */}
+                                    <div>
+                                        <strong className="lable1">Date of birth: </strong>
+                                        {memberships[0]?.user.dob}-{memberships[0]?.user.dobMonth}-{memberships[0]?.user.dobYear}
+                                    </div>
+
                                 </div>
                             </div>
                         }
@@ -1956,9 +1961,22 @@ export default function myprofile(pageProp) {
                                                 </div>
                                                 <input name="alt_spelling" placeholder="Alt Spelling" value={form.alt_spelling} onChange={handleChangeform} />
                                                 {/* <input name="commant" placeholder="Comment" value={form.commant} onChange={handleChangeform} /> */}
-                                                <div>
-                                                    <textarea style={{ height: "80px", padding: "8px", fontSize: "16px" }} value={form?.commant} name="commant" onChange={handleChangeform} placeholder="Comment"></textarea>
-                                                </div>
+                                                <textarea
+                                                    style={{
+                                                        width: "100%",
+                                                        minHeight: "80px",
+                                                        padding: "8px",
+                                                        fontSize: "16px",
+                                                        resize: "none",           // ✅ This will now work
+                                                        border: "1px solid #ccc",
+                                                        borderRadius: "4px",
+                                                    }}
+                                                    value={form?.commant}
+                                                    name="commant"
+                                                    onChange={handleChangeform}
+                                                    placeholder="Comment"
+                                                />
+
                                                 <div className="st-modal-buttons">
                                                     <button onClick={handleAdd} className="st-save-btn">{isEditMode ? "Update" : "Save"}</button>
                                                     <button onClick={() => setShowModal(false)} className="st-cancel-btn">Cancel</button>
