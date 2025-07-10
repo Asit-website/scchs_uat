@@ -1290,7 +1290,7 @@ export default function myprofile(pageProp) {
                                                 return `${mm}-${dd}-${yy}`;
                                             })()}</div>
                                         <div><strong className="lable1">Amount Paid       :</strong>${memberships[0]?.plan?.monthly_price}</div>
-                                        <div><strong className="lable1">Donation             :</strong>{totalAmount}</div>
+                                        <div><strong className="lable1">Donation             :</strong>${totalAmount}</div>
                                         <div><strong className="lable1">Date                      :</strong>{new Date(donations[0]?.created_at).toLocaleString("en-US", {
                                             year: "numeric",
                                             month: "long",
