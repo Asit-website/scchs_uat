@@ -842,7 +842,7 @@ export default function Navbar(props) {
                 /></a>
               </div>
 
-              {navbarItems.map((item, index) => (
+              {/* {navbarItems.map((item, index) => (
                 <div
                   key={index}
                   className="schss_parent"
@@ -877,7 +877,47 @@ export default function Navbar(props) {
                     </div>
                   )}
                 </div>
-              ))}
+              ))} */}
+
+              {navbarItems
+                .filter(item => !(instaUser && item?.parentItems?.title === "JOIN US"))
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="schss_parent"
+                    onClick={() => toggleDropdown(index)}
+                    ref={(el) => (dropdownRefs.current[index] = el)}
+                  >
+                    <li className="dev_svg">
+                      <Link href={item?.parentItems?.link}>{item?.parentItems?.title}</Link>
+                      {item.subItems?.length != 0 && openDropdownIndex === index && (
+                        <svg
+                          width="10"
+                          height="6"
+                          viewBox="0 0 13 8"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5.66016 7.19531L0.328125 1.89062C0.0820312 1.61719 0.0820312 1.20703 0.328125 0.960938L0.957031 0.332031C1.20312 0.0859375 1.61328 0.0859375 1.88672 0.332031L6.125 4.54297L10.3359 0.332031C10.6094 0.0859375 11.0195 0.0859375 11.2656 0.332031L11.8945 0.960938C12.1406 1.20703 12.1406 1.61719 11.8945 1.89062L6.5625 7.19531C6.31641 7.44141 5.90625 7.44141 5.66016 7.19531Z"
+                            fill="#292929"
+                          />
+                        </svg>
+                      )}
+                    </li>
+
+                    {openDropdownIndex === index && (
+                      <div className="test_drop">
+                        {item.subItems.map((subItem, subIndex) => (
+                          <div key={subIndex}>
+                            <a href={subItem?.link}><p>{subItem?.title}</p></a>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
 
               <li className="test_sign">
                 {instaUser ? <button onClick={() => {

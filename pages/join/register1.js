@@ -56,6 +56,31 @@ export default function register1(pageProp) {
 
     const [validPlans, setValidPlans] = useState([]);
 
+    // useEffect(() => {
+    //     const fetchMembershipPlans = async () => {
+    //         if (!instaUser?.id) return;
+
+    //         try {
+    //             const res = await fetch(`https://uat.scchs.co.in/api/user-memberships/${instaUser.id}`);
+    //             const data = await res.json();
+
+    //             const today = new Date();
+    //             const purchasedPlans = data?.data?.filter(plan => {
+    //                 const isActive = plan.status === "active";
+    //                 const endDate = new Date(plan.end_date);
+    //                 return isActive && plan.type === "Purchased" && endDate >= today;
+    //             });
+    //             console.log(purchasedPlans)
+    //             setValidPlans(purchasedPlans);
+    //             console.log(validPlans);
+    //         } catch (err) {
+    //             console.error("Error fetching membership plans:", err);
+    //         }
+    //     };
+
+    //     fetchMembershipPlans();
+    // }, [instaUser]);
+
     useEffect(() => {
         const fetchMembershipPlans = async () => {
             if (!instaUser?.id) return;
@@ -65,14 +90,23 @@ export default function register1(pageProp) {
                 const data = await res.json();
 
                 const today = new Date();
-                const purchasedPlans = data?.data?.filter(plan => {
-                    const isActive = plan.status === "active";
+                const filteredPlans = (data?.data || []).filter(plan => {
                     const endDate = new Date(plan.end_date);
-                    return isActive && plan.type === "Purchased" && endDate >= today;
+                    const isActive = plan.status === "active";
+                    const isPurchased = plan.type === "Purchased";
+                    const allowMember = parseInt(plan.plan?.allow_member || "0");
+                    const usedSlots = parseInt(plan.used_slots || "0");
+
+                    return (
+                        isActive &&
+                        isPurchased &&
+                        endDate >= today &&
+                        allowMember > 1 &&           // hide if allow_member == 1
+                        usedSlots < allowMember      // hide if slots are full
+                    );
                 });
-                console.log(purchasedPlans)
-                setValidPlans(purchasedPlans);
-                console.log(validPlans);
+
+                setValidPlans(filteredPlans);
             } catch (err) {
                 console.error("Error fetching membership plans:", err);
             }
@@ -80,6 +114,9 @@ export default function register1(pageProp) {
 
         fetchMembershipPlans();
     }, [instaUser]);
+
+
+
 
     // ===================fetch member end===============
 
@@ -896,131 +933,131 @@ export default function register1(pageProp) {
 
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+        e.preventDefault();
+        setLoading(true);
 
-    const passwordRegex = /^(?=[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        const passwordRegex = /^(?=[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
 
-    if (formData.password !== formData.password_confirmation) {
-        toast.error("Password and confirm password must be the same.");
-        setLoading(false);
-        return;
-    }
-
-    if (!passwordRegex.test(formData.password)) {
-        toast.error("Password must start with a capital letter, include a special character, and be at least 8 characters long.");
-        setLoading(false);
-        return;
-    }
-
-    try {
-        const isMemberCreation = instaUser?.id ? true : false;
-
-        const url = isMemberCreation
-            ? "https://uat.scchs.co.in/api/members/create"
-            : "https://uat.scchs.co.in/api/registration";
-
-        let memberPayload = { ...formData };
-
-        // if (isMemberCreation) {
-        //     const userMembershipRes = await fetch(`https://uat.scchs.co.in/api/user-memberships/${instaUser.id}`);
-        //     const membershipData = await userMembershipRes.json();
-
-        //     const selectedPlan = membershipData?.data?.find(plan => plan.membership_plan_id === parseInt(formData.membership_plan_id));
-
-        //     if (!selectedPlan) {
-        //         toast.error("Selected membership plan not found or invalid.");
-        //         setLoading(false);
-        //         return;
-        //     }
-
-        //     if (selectedPlan.type?.toLowerCase() === "reference") {
-        //         toast.error("You cannot create members under a reference membership.");
-        //         setLoading(false);
-        //         return;
-        //     }
-
-        //     memberPayload = {
-        //         ...formData,
-        //         parent_user_id: instaUser.id,
-        //         membership_plan_id: selectedPlan.membership_plan_id
-        //     };
-        // }
-
-         if (isMemberCreation) {
-            const selectedPlanId = localStorage.getItem("selected_member_plan_id");
-
-            if (!selectedPlanId) {
-                toast.error("No membership plan selected for member creation.");
-                setLoading(false);
-                return;
-            }
-
-            memberPayload = {
-                ...formData,
-                parent_user_id: instaUser.id,
-                membership_plan_id: selectedPlanId
-            };
-        }
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                ...(isMemberCreation && JSON?.parse(localStorage.getItem("scchs_Access")) ? {
-                    Authorization: `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`
-                } : {}),
-            },
-            body: JSON.stringify(memberPayload),
-        });
-
-        const result = await response.json();
-        console.log(result);
-
-        if (result.status === false) {
-            if (result.message?.email?.length > 0) {
-                toast.error(result.message.email[0]);
-            } else if (result.message?.username?.length > 0) {
-                toast.error(result.message.username[0]);
-            } else if (typeof result.message === 'string') {
-                toast.error(result.message);
-            } else if (typeof result.errors === 'object') {
-                const firstKey = Object.keys(result.errors)[0];
-                const firstErrorMsg = result.errors[firstKey]?.[0] || "Something went wrong.";
-                toast.error(firstErrorMsg);
-            } else {
-                toast.error("Submission failed. Please check your input.");
-            }
+        if (formData.password !== formData.password_confirmation) {
+            toast.error("Password and confirm password must be the same.");
             setLoading(false);
             return;
         }
 
-        if (isMemberCreation) {
-            toast.success(result?.message || "Member created successfully!");
-            window.location.href = "/";
-        } else {
-            if (result.message?.email?.length > 0) {
-                toast.error(result.message.email[0]);
-            } else if (result.message?.username?.length > 0) {
-                toast.error(result.message.username[0]);
-            } else {
-                toast.success("Registered successfully!");
+        if (!passwordRegex.test(formData.password)) {
+            toast.error("Password must start with a capital letter, include a special character, and be at least 8 characters long.");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const isMemberCreation = instaUser?.id ? true : false;
+
+            const url = isMemberCreation
+                ? "https://uat.scchs.co.in/api/members/create"
+                : "https://uat.scchs.co.in/api/registration";
+
+            let memberPayload = { ...formData };
+
+            if (isMemberCreation) {
+                const userMembershipRes = await fetch(`https://uat.scchs.co.in/api/user-memberships/${instaUser.id}`);
+                const membershipData = await userMembershipRes.json();
+
+                const selectedPlan = membershipData?.data?.find(plan => plan.membership_plan_id === parseInt(formData.membership_plan_id));
+
+                if (!selectedPlan) {
+                    toast.error("Selected membership plan not found or invalid.");
+                    setLoading(false);
+                    return;
+                }
+
+                if (selectedPlan.type?.toLowerCase() === "reference") {
+                    toast.error("You cannot create members under a reference membership.");
+                    setLoading(false);
+                    return;
+                }
+
+                memberPayload = {
+                    ...formData,
+                    parent_user_id: instaUser.id,
+                    membership_plan_id: selectedPlan.membership_plan_id
+                };
             }
+
+            //  if (isMemberCreation) {
+            //     const selectedPlanId = localStorage.getItem("selected_member_plan_id");
+
+            //     if (!selectedPlanId) {
+            //         toast.error("No membership plan selected for member creation.");
+            //         setLoading(false);
+            //         return;
+            //     }
+
+            //     memberPayload = {
+            //         ...formData,
+            //         parent_user_id: instaUser.id,
+            //         membership_plan_id: selectedPlanId
+            //     };
+            // }
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(isMemberCreation && JSON?.parse(localStorage.getItem("scchs_Access")) ? {
+                        Authorization: `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`
+                    } : {}),
+                },
+                body: JSON.stringify(memberPayload),
+            });
+
+            const result = await response.json();
+            console.log(result);
+
+            if (result.status === false) {
+                if (result.message?.email?.length > 0) {
+                    toast.error(result.message.email[0]);
+                } else if (result.message?.username?.length > 0) {
+                    toast.error(result.message.username[0]);
+                } else if (typeof result.message === 'string') {
+                    toast.error(result.message);
+                } else if (typeof result.errors === 'object') {
+                    const firstKey = Object.keys(result.errors)[0];
+                    const firstErrorMsg = result.errors[firstKey]?.[0] || "Something went wrong.";
+                    toast.error(firstErrorMsg);
+                } else {
+                    toast.error("Submission failed. Please check your input.");
+                }
+                setLoading(false);
+                return;
+            }
+
+            if (isMemberCreation) {
+                toast.success(result?.message || "Member created successfully!");
+                // window.location.href = "/";
+            } else {
+                if (result.message?.email?.length > 0) {
+                    toast.error(result.message.email[0]);
+                } else if (result.message?.username?.length > 0) {
+                    toast.error(result.message.username[0]);
+                } else {
+                    toast.success("Registered successfully!");
+                }
+            }
+
+            setFormData({});
+
+            if (!isMemberCreation) {
+                router.push("/user/userlogin");
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error("Something went wrong. Please try again later.");
+        } finally {
+            setLoading(false);
         }
-
-        setFormData({});
-
-        if (!isMemberCreation) {
-            router.push("/user/userlogin");
-        }
-
-    } catch (error) {
-        console.error('Error:', error);
-        toast.error("Something went wrong. Please try again later.");
-    } finally {
-        setLoading(false);
-    }
-};
+    };
 
 
 
@@ -1115,11 +1152,12 @@ export default function register1(pageProp) {
                                         {/* {step>1 &&  <button type="button" onClick={handlePrevious}>Back</button>}    */}
                                     </div>
                                     <div className="nameform-container">
-                                        <h2>Primary Member Information</h2>
+                                         <h2>{instaUser?.id ? "Secondary Member Information" : "Primary Member Information"}</h2>
+
                                         <div className="nameform-group nams_group">
 
                                             {/* <input onChange={handleChange} name="prefix" value={formData.prefix} className="nameform-input" type="text" placeholder="Prefix" /> */}
-                                            {/* <select value={formData.membership_plan_id || ""}
+                                            {instaUser?.id && <select value={formData.membership_plan_id || ""}
                                                 onChange={(e) =>
                                                     setFormData((prev) => ({
                                                         ...prev,
@@ -1129,11 +1167,11 @@ export default function register1(pageProp) {
                                                 <option value={""}>Select Membership Plan</option>
                                                 {validPlans.map((plan) => (
                                                     <option key={plan.id} value={plan.membership_plan_id}>
-                                                        {plan.plan?.name} 
-                                                        
+                                                        {plan.plan?.name}
+
                                                     </option>
                                                 ))}
-                                            </select> */}
+                                            </select>}
                                         </div>
                                         <div className="nameform-group nams_group">
 
@@ -1643,7 +1681,8 @@ export default function register1(pageProp) {
                                         {step > 1 && <button type="button" onClick={handlePrevious}>Back</button>}
                                     </div>
                                     <div className="nameform-container">
-                                        <h2>Primary Member Information</h2>
+                                    <h2>{instaUser?.id ? "Secondary Member Information" : "Primary Member Information"}</h2>
+
                                         <div className="nameform-group nams_group">
                                             <input required onChange={handleChange} name="username" value={formData?.username} className="nameform-input" type="text" placeholder="UserName" />
                                             {errors?.username && <p className="text_red">{errors.username}</p>}

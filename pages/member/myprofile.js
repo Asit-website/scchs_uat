@@ -1199,7 +1199,7 @@ export default function myprofile(pageProp) {
                         >
                             Add Member
                         </button> */}
-                    <div className="newsection1-wrapper">
+                    {/* <div className="newsection1-wrapper">
                         <div className="newsection1-inner">
                             {!onlySingleMemberPlans && validPlans.length > 0 && (
                                 <select
@@ -1218,13 +1218,13 @@ export default function myprofile(pageProp) {
                             <button
                                 onClick={handleRedirect}
                                 className="newsection1-button"
-                                // disabled={onlySingleMemberPlans}
+                               
                                 disabled={onlySingleMemberPlans || validPlans.length === 0 || !selectedPlanId}
                             >
                                 Add Member
                             </button>
                         </div>
-                    </div>
+                    </div> */}
 
 
 
