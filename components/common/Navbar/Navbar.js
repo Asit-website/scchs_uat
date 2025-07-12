@@ -1219,33 +1219,35 @@ export default function Navbar(props) {
             ))}
 
             {/* Dynamic Items */}
-            {navbarItems.map((item) => (
-              <div key={item.parentId} className="mobile-navbar-item">
-                <div
-                  className="mobile-navbar-parent"
-                  onClick={() =>
-                    setExpanded((prev) =>
-                      prev === item.parentId ? null : item.parentId
-                    )
-                  }
-                >
-                  <a href={item.parentItems.link}>{item.parentItems.title}</a>
-                  {item.subItems.length > 0 && (
-                    <span>{expanded === item.parentId ? "▲" : "▼"}</span>
-                  )}
+            {navbarItems
+              .filter(item => !(instaUser && item?.parentItems?.title === "JOIN US"))
+              .map((item) => (
+                <div key={item.parentId} className="mobile-navbar-item">
+                  <div
+                    className="mobile-navbar-parent"
+                    onClick={() =>
+                      setExpanded((prev) =>
+                        prev === item.parentId ? null : item.parentId
+                      )
+                    }
+                  >
+                    <a href={item.parentItems.link}>{item.parentItems.title}</a>
+                    {item.subItems.length > 0 && (
+                      <span>{expanded === item.parentId ? "▲" : "▼"}</span>
+                    )}
+                  </div>
+                  <div
+                    className={`mobile-navbar-submenu ${expanded === item.parentId ? "expanded" : ""
+                      }`}
+                  >
+                    {item.subItems.map((sub) => (
+                      <a key={sub.id} href={sub.link}>
+                        {sub.title}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-                <div
-                  className={`mobile-navbar-submenu ${expanded === item.parentId ? "expanded" : ""
-                    }`}
-                >
-                  {item.subItems.map((sub) => (
-                    <a key={sub.id} href={sub.link}>
-                      {sub.title}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
 
             <Link style={{ marginLeft: "auto" }} href={"/storeorder"}><div className="cart-container">
 
