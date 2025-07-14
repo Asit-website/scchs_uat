@@ -196,7 +196,7 @@ export default function renew(pageProp) {
                                         <h3 className="membership-renew-name">{plan.plan?.name}</h3>
 
                                         <p className="membership-renew-dates">
-                                            Expired on: {new Date(plan.end_date).toLocaleDateString("en-US", {
+                                            Expiration Date: {new Date(plan.end_date).toLocaleDateString("en-US", {
                                                 month: "long",
                                                 day: "numeric",
                                                 year: "numeric",
