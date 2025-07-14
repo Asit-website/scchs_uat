@@ -1252,7 +1252,7 @@ export default function myprofile(pageProp) {
                                         return (
                                             <div key={index} className="info-card">
                                                 <p><strong>Membership Plan :</strong>{val?.plan.name}</p>
-                                                <p><strong>Membership # :</strong>{val?.membership_plan_id}</p>
+                                                <p><strong>Membership Plan Id :</strong>{val?.membership_plan_id}</p>
                                             </div>
                                         )
                                     })

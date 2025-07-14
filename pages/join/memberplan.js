@@ -328,9 +328,17 @@ export default function memberplan(pageProp) {
                               const result = await response.json();
                               console.log("Purchase API response:", result);
 
+                              // ...existing code...
                               toast.success("membership plan purchased successfully")
                               //  window.location.href = "/member/welcomemember";
-                              window.location.href = "/join/register1";
+                              // window.location.href = "/join/register1";
+                              if (selectedPlan.name === "Individual") {
+                                window.location.href = "/";
+                              } else {
+                                window.location.href = "/join/register1";
+                              }
+                              // ...existing code...
+
 
 
                               // Optional: show success message or redirect
