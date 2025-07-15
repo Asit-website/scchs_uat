@@ -29,20 +29,97 @@ const UserProfile = () => {
     }));
   };
 
-  const toggleEdit = () => {
-    if (isEdit) {
+  // const updateProfileApi = async () => {
+   
+  //   console.log("Sending form data:", form);
+  //   try {
+  //     const token = localStorage.getItem("scchs_Access");
+  //     // alert(token);
+  //     const response = await fetch("http://uat.scchs.co.in/api/profile-update", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Authorization": `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify(form),
+  //       // mode: 'cors'
+  //     });
+  //     const data = await response.json();
+  //     console.log("API Response:", data);
+  //   } catch (error) {
+  //     console.error("API Error:", error);
+  //   }
+  // };
 
+
+  const updateProfileApi = async () => {
+    try {
+      const token = localStorage.getItem("scchs_Access");
+  
+      const response = await fetch("http://uat.scchs.co.in/api/profile-update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(form),
+      });
+  
+      const data = await response.json();
+      console.log("API Response:", data);
+  
+      if (data.status) {
+        // Update localStorage
+        localStorage.setItem("scchs_User", JSON.stringify(data.data));
+      } else {
+        console.error("Profile update failed:", data.message);
+      }
+    } catch (error) {
+      console.error("API Error:", error);
+    }
+  };
+
+  // const toggleEdit = () => {
+  //   if (isEdit) {
+
+  //     localStorage.setItem("scchs_User", JSON.stringify(form));
+  //     setShowPopup(true);
+  //     router.refresh();
+  //     setTimeout(() => setShowPopup(false), 3000);
+  //   }
+  //   setIsEdit(!isEdit);
+  // };
+
+  // const toggleEdit = async () => {
+  //   if (isEdit) {
+  //     localStorage.setItem("scchs_User", JSON.stringify(form));
+
+
+  //     await updateProfileApi();
+
+  //     setShowPopup(true);
+  //     setTimeout(() => setShowPopup(false), 3000);
+  //   }
+  //   setIsEdit(!isEdit);
+  // };
+
+  const toggleEdit = async () => {
+    if (isEdit) {
+      await updateProfileApi();
       localStorage.setItem("scchs_User", JSON.stringify(form));
+
+      window.dispatchEvent(new Event("userProfileUpdated"));
+
       setShowPopup(true);
-      router.refresh();
       setTimeout(() => setShowPopup(false), 3000);
     }
     setIsEdit(!isEdit);
   };
 
 
+
   useEffect(() => {
-   const user = JSON.parse(localStorage.getItem("scchs_User"))
+    const user = JSON.parse(localStorage.getItem("scchs_User"))
     if (user) {
       try {
         setForm(user);
