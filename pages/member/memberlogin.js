@@ -24,24 +24,24 @@ export default function memberlogin(pageProp) {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
-     const addToCartApi = async (id , access) => {
+    const addToCartApi = async (id, access) => {
 
         const resp = await fetch('https://uat.scchs.co.in/api/cart/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-             "Authorization":`Bearer ${access}`
-          },
-          body: JSON.stringify({
-            product_id: id,
-            quantity: 1,
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${access}`
+            },
+            body: JSON.stringify({
+                product_id: id,
+                quantity: 1,
+            }),
         })
-          .then(response => response.json())
-         
-          .catch(error => console.error('Error:', error));
-    
-      }
+            .then(response => response.json())
+
+            .catch(error => console.error('Error:', error));
+
+    }
 
 
     const submitLogin = async (e) => {
@@ -69,12 +69,15 @@ export default function memberlogin(pageProp) {
 
             const data = await response.json();
             console.log(data);
-            
-          if(data.status === false){
-            toast.error(data.message);
-            return
-          }
-         
+
+            if (data.status === false) {
+                toast.error(data.message);
+                return
+            }
+            console.log("User Info:", data.user.user_info);
+            // console.log("User First Name:", data.user.user_info.first_name);
+            // console.log("User Location (State):", data.user.user_info.state);
+            // console.log("User Login Status:  Success");
 
 
             localStorage.setItem("scchs_Access", JSON.stringify(data?.user?.access_token));
@@ -83,9 +86,9 @@ export default function memberlogin(pageProp) {
             // added the carts into the user carts 
             let allCarts = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
-            for(let cart of allCarts){
-                 console.log("cart" , cart);
-                await addToCartApi(cart?.id , data?.user?.access_token);
+            for (let cart of allCarts) {
+                console.log("cart", cart);
+                await addToCartApi(cart?.id, data?.user?.access_token);
             }
             toast.success(data?.message);
             window.location.href = "/join/memberplan";

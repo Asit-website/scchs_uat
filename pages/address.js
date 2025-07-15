@@ -329,7 +329,7 @@ export default function Cart(props) {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`
+                    "Authorization": `Bearer ${JSON?.parse(localStorage.getItem("scchs_Access"))}`                  
                 }
             });
 

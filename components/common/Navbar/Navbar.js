@@ -594,11 +594,27 @@ export default function Navbar(props) {
 
 
     //  =====plan purchased or not=============
+    // useEffect(() => {
+    //   const storedUser = localStorage.getItem("scchs_User");
+    //   if (storedUser) {
+    //     setInstaUser(JSON.parse(storedUser));
+    //   }
+    // }, []);
+
     useEffect(() => {
       const storedUser = localStorage.getItem("scchs_User");
-      if (storedUser) {
-        setInstaUser(JSON.parse(storedUser));
-      }
+      if (storedUser) setInstaUser(JSON.parse(storedUser));
+    
+      const handleProfileUpdate = () => {
+        const updatedUser = localStorage.getItem("scchs_User");
+        if (updatedUser) setInstaUser(JSON.parse(updatedUser));
+      };
+    
+      window.addEventListener("userProfileUpdated", handleProfileUpdate);
+    
+      return () => {
+        window.removeEventListener("userProfileUpdated", handleProfileUpdate);
+      };
     }, []);
 
 
