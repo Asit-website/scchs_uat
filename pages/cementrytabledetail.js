@@ -8,17 +8,6 @@ import HeadSEO1 from "../components/common/Head/head1";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
-
-var settingsMorePhotos = {
-    arrows: true,
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-};
-
-
 export default function cementrytable(pageProp) {
     const printRef = useRef();
     const router = useRouter();
@@ -42,32 +31,30 @@ export default function cementrytable(pageProp) {
         <head>
           <title>Print Surname Details</title>
           <style>
-           @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-          *{
-             font-family: "Inter", sans-serif;
+           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+          * {
+            font-family: "Inter", sans-serif;
           }
-          body{
-              font-family: "Inter", sans-serif;
+          body {
+            font-family: "Inter", sans-serif;
+            padding: 20px;
           }
-           .cemetery-box {
-  border: 1px solid #aaa;
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #fff;
-}
-
-.cemetery-box-title {
-  color: #335533;
-  font-weight: bold;
-  font-size: 16px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-          </style>
-        </head>
-        <body>
-         
-        </body>
+          .cemetery-box {
+            border: 1px solid #aaa;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+          }
+          .cemetery-box-title {
+            color: #335533;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+          }
+        </style>
+      </head>
+      <body></body>
       </html>
     `);
 
@@ -81,13 +68,11 @@ export default function cementrytable(pageProp) {
     };
 
     if (!personData) return <p>Loading...</p>;
+
     return (
         <div className="page_shopping_list sop">
             <HeadSEO title={"memberlogin"} description={"this member is login"} image={null} />
-
             <HeadSEO1 />
-
-
 
             <div className="event_system_main event_system_main1">
                 <div className="event_main">
@@ -99,63 +84,164 @@ export default function cementrytable(pageProp) {
                                 <button className="cemetery-btn-close" onClick={() => router.back()}>Close</button>
                             </div>
                         </div>
-                        <div ref={printRef}>
-                            <div className="cemetery-box" >
-                                <h3 className="cemetery-box-title">Personal Data:</h3>
-                                <p>Surname: <strong>{personData.surname}</strong></p>
-                                <p>Given Name: <strong>{personData.given_name}</strong></p>
-                                <p>Age: <strong>{personData.age}</strong></p>
+
+                        <div ref={printRef} className="cemetery-flex-wrapper">
+                            <div className="cemetery-info-left">
+                                <div className="cemetery-box">
+                                    <h3 className="cemetery-box-title">Personal Data:</h3>
+                                    <p>Surname: <strong>{personData.surname}</strong></p>
+                                    <p>Given Name: <strong>{personData.given_name}</strong></p>
+                                    <p>Age: <strong>{personData.age}</strong></p>
+                                </div>
+
+                                <div className="cemetery-box">
+                                    <h3 className="cemetery-box-title">Birth Information:</h3>
+                                    <p>Mo. / Day / Year: <strong>{personData.birth_month} {personData?.birth_day} {personData?.birth_year}</strong></p>
+                                </div>
+
+                                <div className="cemetery-box">
+                                    <h3 className="cemetery-box-title">Death Information:</h3>
+                                    <p>Mo. / Day / Year: <strong>{personData.death_month} {personData?.death_day} {personData?.death_year}</strong></p>
+                                </div>
+
+                                <div className="cemetery-box">
+                                    <h3 className="cemetery-box-title">Interment Information:</h3>
+                                    <p>Cemetery: <strong>{personData.cemetery}</strong></p>
+                                </div>
+
+                                <div className="cemetery-box">
+                                    <h3 className="cemetery-box-title">Notes / Comments:</h3>
+                                    <p><strong>{personData.notes}</strong></p>
+                                </div>
                             </div>
 
-                            <div className="cemetery-box">
-                                <h3 className="cemetery-box-title">Birth Information:</h3>
-                                <p>  Mo. / Day / Year : <strong>{personData.birth_month} {personData?.birth_day} {personData?.birth_year}</strong></p>
-                            </div>
+                            {Array.isArray(personData.images) && personData.images.length > 0 && (
+                                <div className="cemetery-info-right" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                                    {personData.images.map((imgUrl, idx) => {
+                                        console.log(`🖼️ Image ${idx + 1}:`, imgUrl);
+                                        return (
+                                            <img
+                                                key={idx}
+                                                src={
+                                                    imgUrl.startsWith("http")
+                                                        ? imgUrl
+                                                        : `https://uat.scchs.co.in/uploads/${imgUrl}`
+                                                }
+                                                alt={`Person Image ${idx + 1}`}
+                                                className="cemetery-image"
+                                                style={{ width: "300px", height: "auto", borderRadius: "6px" }}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            )}
 
-                            <div className="cemetery-box">
-                                <h3 className="cemetery-box-title">Death Information:</h3>
-                                <p> / Mo. / Day / Year : <strong>{personData.death_month} {personData?.death_day} {personData?.death_year}</strong></p>
-                            </div>
-
-                            <div className="cemetery-box">
-                                <h3 className="cemetery-box-title">Interment Information:</h3>
-                                <p>Cemetery: <strong>{personData.cemetery}</strong></p>
-                            </div>
-
-                            <div className="cemetery-box">
-                                <h3 className="cemetery-box-title">Notes / Comments:</h3>
-                                <p><strong>{personData.notes}</strong></p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+        .cemetery-detail-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .cemetery-detail-buttons button {
+          margin-left: 10px;
+          padding: 6px 12px;
+          background-color: #00305b;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .cemetery-detail-buttons button:hover {
+          opacity: 0.9;
+        }
+
+        .cemetery-flex-wrapper {
+          display: flex;
+          gap: 40px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+        }
+
+        .cemetery-info-left {
+          flex: 1 1 60%;
+        }
+
+        .cemetery-info-right {
+          flex: 1 1 35%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        .cemetery-image {
+          border-radius: 6px;
+          object-fit: cover;
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+          max-width: 100%;
+          height: auto;
+        }
+
+        .cemetery-box {
+          border: 1px solid #aaa;
+          margin-top: 20px;
+          padding: 15px;
+          background-color: #fff;
+        }
+
+        .cemetery-box-title {
+          color: #335533;
+          font-weight: bold;
+          font-size: 16px;
+          border-bottom: 1px solid #ccc;
+          margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+          .cemetery-flex-wrapper {
+            flex-direction: column;
+          }
+
+          .cemetery-info-right {
+            margin-top: 20px;
+          }
+
+          .cemetery-detail-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+          }
+        }
+      `}</style>
         </div>
     );
 }
 
 export async function getServerSideProps(context) {
     try {
-
         const globalSettings = await GlobalHeaderFooter();
         return {
             props: {
                 page_content: false,
                 navbar: globalSettings?.header,
-                footer: globalSettings?.footer
+                footer: globalSettings?.footer,
             },
         };
-
     } catch (error) {
-
         return {
             props: {
                 page_content: false,
                 navbar: false,
-                footer: false
+                footer: false,
             },
-            notFound: true
+            notFound: true,
         };
-
     }
 }
