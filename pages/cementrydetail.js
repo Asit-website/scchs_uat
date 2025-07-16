@@ -10,55 +10,55 @@ import { useRouter } from "next/router";
 
 
 var settingsMorePhotos = {
-    arrows: true,
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
+  arrows: true,
+  dots: false,
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1
 };
 
 
 export default function cementrydetail(pageProp) {
 
-    const router = useRouter();
-    const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
 
-    const [cemetery, setCemetery] = useState(null);
+  const [cemetery, setCemetery] = useState(null);
 
-    useEffect(() => {
-        if (id) {
-            fetch(`https://uat.scchs.co.in/api/cemeteries/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setCemetery(data);
-                });
-        }
-        console.log(id);
-    }, [id]);
+  useEffect(() => {
+    if (id) {
+      fetch(`https://uat.scchs.co.in/api/cemeteries/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCemetery(data);
+        });
+    }
+    console.log(id);
+  }, [id]);
 
-    const [surname, setSurname] = useState("");
-    
-        const handleSearch = () => {
-            if (surname.trim()) {
-                router.push(`/searchsurname?surname=${surname}`);
-            }
-        };
+  const [surname, setSurname] = useState("");
 
-    return (
-        <div className="page_shopping_list sop">
-            <HeadSEO title={"memberlogin"} description={"this member is login"} image={null} />
+  const handleSearch = () => {
+    if (surname.trim()) {
+      router.push(`/searchsurname?surname=${surname}`);
+    }
+  };
 
-            <HeadSEO1 />
+  return (
+    <div className="page_shopping_list sop">
+      <HeadSEO title={"memberlogin"} description={"this member is login"} image={null} />
+
+      <HeadSEO1 />
 
 
 
-            <div className="event_system_main event_system_main1">
-                <div className="event_main">
-                    <div className="cementry_record">
-                        <div className="cemetery-wrapper">
-                            <div className="cemetery-filters">
-                                <div className="filter-group">
-                                    {/* <label htmlFor="county">Filter List by County / Region:</label>
+      <div className="event_system_main event_system_main1">
+        <div className="event_main">
+          <div className="cementry_record">
+            <div className="cemetery-wrapper">
+              <div className="cemetery-filters">
+                <div className="filter-group">
+                  {/* <label htmlFor="county">Filter List by County / Region:</label>
                   <select id="county">
                     <option>All</option>
                     <option>St. Charles</option>
@@ -71,34 +71,36 @@ export default function cementrydetail(pageProp) {
                     <option>Abington</option>
                   </select> */}
 
-                                    <label htmlFor="surname">Search for Surname:</label>
-                                    <div className="surname-search">
-                                        <input value={surname}
-                                            onChange={(e) => setSurname(e.target.value)} type="text" id="surname" />
-                                        <button onClick={handleSearch} className="search-button">🔍</button>
-                                    </div>
-                                </div>
+                  <label htmlFor="surname">Search for Surname:</label>
+                  <div className="surname-search">
+                    <input value={surname}
+                      onChange={(e) => setSurname(e.target.value)} type="text" id="surname" onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSearch();
+                      }} />
+                    <button onClick={handleSearch} className="search-button">🔍</button>
+                  </div>
+                </div>
 
 
-                            </div>
+              </div>
 
-                            <div className="cemetery-list">
-                                <div className="cemetery-item">
-                                    <h3 style={{marginBottom: '1rem'}}>{cemetery?.name}</h3>
-                                    <div className="cemetery-links">
-                                        <Link  style={{ border: '1px solid #9d0030', padding: '7px 15px', color: '#9d0030', fontSize: '13px', textDecoration: 'none', borderRadius: '3px'  }} className="opens" href={`/cementrytable?id=${id}`}>View Cemetery Records</Link> {""} 
-                                        <Link style={{ border: '1px solid #00305b',padding: '7px 15px', color: '#00305b', fontSize: '13px', textDecoration: 'none', borderRadius: '3px'  }} className="openss" href="/cementryrecord"> Return to Cemetery Listings</Link>
-                                    </div>
-                                    <p style={{padding: '10px 0px'}}  dangerouslySetInnerHTML={{ __html: cemetery?.short_description }} />
-                                    <p dangerouslySetInnerHTML={{ __html: cemetery?.description }} />
-                                </div>
-
-
+              <div className="cemetery-list">
+                <div className="cemetery-item">
+                  <h3 style={{ marginBottom: '1rem' }}>{cemetery?.name}</h3>
+                  <div className="cemetery-links">
+                    <Link style={{ border: '1px solid #9d0030', padding: '7px 15px', color: '#9d0030', fontSize: '13px', textDecoration: 'none', borderRadius: '3px' }} className="opens" href={`/cementrytable?id=${id}`}>View Cemetery Records</Link> {""}
+                    <Link style={{ border: '1px solid #00305b', padding: '7px 15px', color: '#00305b', fontSize: '13px', textDecoration: 'none', borderRadius: '3px' }} className="openss" href="/cementryrecord"> Return to Cemetery Listings</Link>
+                  </div>
+                  <p style={{ padding: '10px 0px' }} dangerouslySetInnerHTML={{ __html: cemetery?.short_description }} />
+                  <p dangerouslySetInnerHTML={{ __html: cemetery?.description }} />
+                </div>
 
 
-                            </div>
 
-                   {/* {cemetery?.images && cemetery.images.length > 0 && (
+
+              </div>
+
+              {/* {cemetery?.images && cemetery.images.length > 0 && (
                     <div className="cemetery-images">
                       {cemetery.images.map((imgUrl, idx) => (
                         <div key={idx} className="cemetery-image-wrapper">
@@ -114,7 +116,7 @@ export default function cementrydetail(pageProp) {
                     </div>
                   )} */}
 
-                            <style jsx>{`
+              <style jsx>{`
         .cemetery-wrapper {
           padding: 20px;
         }
@@ -235,37 +237,37 @@ export default function cementrydetail(pageProp) {
     }
   }
       `}</style>
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export async function getServerSideProps(context) {
-    try {
+  try {
 
-        const globalSettings = await GlobalHeaderFooter();
-        return {
-            props: {
-                page_content: false,
-                navbar: globalSettings?.header,
-                footer: globalSettings?.footer
-            },
-        };
+    const globalSettings = await GlobalHeaderFooter();
+    return {
+      props: {
+        page_content: false,
+        navbar: globalSettings?.header,
+        footer: globalSettings?.footer
+      },
+    };
 
-    } catch (error) {
+  } catch (error) {
 
-        return {
-            props: {
-                page_content: false,
-                navbar: false,
-                footer: false
-            },
-            notFound: true
-        };
+    return {
+      props: {
+        page_content: false,
+        navbar: false,
+        footer: false
+      },
+      notFound: true
+    };
 
-    }
+  }
 }
 

@@ -80,6 +80,88 @@ body {
 }
 
 /* ==============renew css======= */
+.profile-container {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field label {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.profile-field input {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.profile-field input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
+
+.profile-field .readonly {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #333;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.button-row {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.button-row button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button-row button:hover {
+  background-color: #0056b3;
+}
+
 .membership-renew-main{
   display: grid;
   grid-template-columns: repeat(4,1fr);

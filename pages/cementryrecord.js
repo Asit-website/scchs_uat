@@ -169,6 +169,9 @@ export default function cementryrecord(pageProp) {
                       value={surname}
                       onChange={(e) => setSurname(e.target.value)}
                       placeholder="Search for Surname"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSearch();
+                      }}
                     />
                     <button onClick={handleSearch}>🔍</button>
                   </div>
