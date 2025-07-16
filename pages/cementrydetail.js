@@ -98,6 +98,22 @@ export default function cementrydetail(pageProp) {
 
                             </div>
 
+                   {/* {cemetery?.images && cemetery.images.length > 0 && (
+                    <div className="cemetery-images">
+                      {cemetery.images.map((imgUrl, idx) => (
+                        <div key={idx} className="cemetery-image-wrapper">
+                          <Image
+                            src={imgUrl}
+                            alt={`Cemetery Image ${idx + 1}`}
+                            width={600}
+                            height={400}
+                            className="cemetery-image"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )} */}
+
                             <style jsx>{`
         .cemetery-wrapper {
           padding: 20px;
@@ -190,6 +206,8 @@ export default function cementrydetail(pageProp) {
   .cemetery-links a:hover {
     opacity: 0.9;
   }
+
+  
 
   @media (max-width: 600px) {
    
