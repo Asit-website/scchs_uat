@@ -52,7 +52,7 @@ export default function cementrytable(pageProp) {
 
             <div className="event_system_main event_system_main1">
                 <div className="event_main">
-                    
+
                     <div className="cemetery-records-wrapper">
                         <div className="cemetery-records-filters">
                             <div className="cemetery-filter-group">
@@ -68,7 +68,7 @@ export default function cementrytable(pageProp) {
                                         className="cemetery-clear-btn"
                                         onClick={() => setSurname("")}
                                     >
-                                        🧹
+                                        Clear
                                     </button>
                                 </div>
                             </div>
@@ -101,17 +101,17 @@ export default function cementrytable(pageProp) {
                                         <td>{person.age}</td>
                                         <td>{person.birth_year}</td>
                                         <td>{person.death_year}</td>
-                                        <td style={{width:"20%"}}>{person.burial_year}</td>
+                                        <td style={{ width: "20%" }}>{person.burial_year}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                       
-                       
+
+
 
 
                     </div>
-                    
+
                 </div>
             </div>
         </div>

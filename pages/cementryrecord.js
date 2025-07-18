@@ -174,6 +174,13 @@ export default function cementryrecord(pageProp) {
                       }}
                     />
                     <button onClick={handleSearch}>🔍</button>
+                    <button
+                      style={{marginLeft: "10px"}}
+                      className="cemetery-clear-btn"
+                      onClick={() => setSurname("")}
+                    >
+                      Clear
+                    </button>
                   </div>
                 </div>
 

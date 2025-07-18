@@ -52,37 +52,40 @@ export default function searchsurname(pageProp) {
 
             <div className="event_system_main event_system_main1">
                 <div className="event_main">
+                    <div style={{ marginBottom: "10px" }} className="back-button-wrapper">
+                        <button onClick={() => router.back()} className="back-btn">← Back</button>
+                    </div>
                     <div className="cemetery-records-wrapper">
                         <h2>Search Results for: <strong>{surname}</strong></h2>
                         <div style={{ overflowX: "auto" }}>
-                        <table className="cemetery-table" style={{ minWidth: "700px", width: "100%", overflowX: "auto"}}>
-                            <thead>
-                                <tr>
-                                    <th>Actions</th>
-                                    <th>Surname</th>
-                                    <th>Given Name</th>
-                                    <th>Age</th>
-                                    <th>Birth Year</th>
-                                    <th>Death Year</th>
-                                    <th>Burial Year</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {searchResults.map((person) => (
-                                    <tr key={person.id}>
-                                        <td>
-                                            <Link href={`/cementrytabledetail?id=${person.cemetery_id}&personId=${person.index}`}>👁</Link>
-                                        </td>
-                                        <td>{person.surname}</td>
-                                        <td>{person.name}</td>
-                                        <td>{person.age}</td>
-                                        <td>{person.birth_year}</td>
-                                        <td>{person.death_year}</td>
-                                        <td>{person.burial_year}</td>
+                            <table className="cemetery-table" style={{ minWidth: "700px", width: "100%", overflowX: "auto" }}>
+                                <thead>
+                                    <tr>
+                                        <th>Actions</th>
+                                        <th>Surname</th>
+                                        <th>Given Name</th>
+                                        <th>Age</th>
+                                        <th>Birth Year</th>
+                                        <th>Death Year</th>
+                                        <th>Burial Year</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {searchResults.map((person) => (
+                                        <tr key={person.id}>
+                                            <td>
+                                                <Link href={`/cementrytabledetail?id=${person.cemetery_id}&personId=${person.index}`}>👁</Link>
+                                            </td>
+                                            <td>{person.surname}</td>
+                                            <td>{person.name}</td>
+                                            <td>{person.age}</td>
+                                            <td>{person.birth_year}</td>
+                                            <td>{person.death_year}</td>
+                                            <td>{person.burial_year}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
