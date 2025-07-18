@@ -294,7 +294,7 @@ export default function surenamelook(pageProp) {
     const [searchTrigger, setSearchTrigger] = useState("");
 
     // const [filteredData1, setFilteredData1] = useState([]);
-    const [itemsPerPage, setItemsPerPage] = useState(50);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -436,6 +436,16 @@ export default function surenamelook(pageProp) {
                                 }} type="text" className="search-input serach_inpp" placeholder="Search Surname" />
                             <button onClick={() => setSearchTrigger(searchTerm)} className="search-button">
                                 <img width="28" src="https://res.cloudinary.com/dgif730br/image/upload/v1744279927/Mask_group_zicocm.png" alt="this is search image" />
+                            </button>
+                            <button
+                                style={{ padding: "10px" }}
+                                className="cemetery-clear-btn"
+                                onClick={() => {
+                                    setSearchTerm("");
+                                    setSearchTrigger("");
+                                }}
+                            >
+                                Clear
                             </button>
                         </div>
 

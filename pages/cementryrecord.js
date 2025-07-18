@@ -69,9 +69,29 @@ export default function cementryrecord(pageProp) {
     setFilteredRecords(records.slice(start, end));
   }, [selectedCemetery, filteredCemeteries, currentPage, resultsPerPage]);
 
+  // const handleSearch = () => {
+  //   if (surname.trim()) {
+  //     router.push(`/searchsurname?surname=${surname}`);
+  //   }
+  // };
+
   const handleSearch = () => {
     if (surname.trim()) {
-      router.push(`/searchsurname?surname=${surname}`);
+      // Agar user ne specific cemetery select ki hai, toh uske hisaab se redirect karo
+      if (selectedCemetery !== "All") {
+        // Find selected cemetery object to get its id
+        const cemeteryObj = filteredCemeteries.find(
+          (c) => c.name.toLowerCase().trim() === selectedCemetery.toLowerCase().trim()
+        );
+        if (cemeteryObj && cemeteryObj.id) {
+          router.push(
+            `/searchsurname?surname=${encodeURIComponent(surname)}&cemetery_id=${cemeteryObj.id}`
+          );
+          return;
+        }
+      }
+      // Agar "All" hai toh purane tarike se redirect karo (all cemeteries)
+      router.push(`/searchsurname?surname=${encodeURIComponent(surname)}`);
     }
   };
 
@@ -175,7 +195,7 @@ export default function cementryrecord(pageProp) {
                     />
                     <button onClick={handleSearch}>🔍</button>
                     <button
-                      style={{marginLeft: "10px"}}
+                      style={{ marginLeft: "10px" }}
                       className="cemetery-clear-btn"
                       onClick={() => setSurname("")}
                     >

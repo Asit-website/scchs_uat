@@ -344,7 +344,7 @@ export default function research(pageProp) {
                     <strong>Located in Category:</strong> {record.category}
                   </span>
                 </div>
-                <Link href={`${record?.link}`}><button className="record-box-button">Know More</button></Link>
+                <Link href={`${record?.link}`}><button className="record-box-button">More</button></Link>
               </div>
             ))}
             <div className="custom-pagination">

@@ -38,11 +38,22 @@ export default function cementrydetail(pageProp) {
 
   const [surname, setSurname] = useState("");
 
+  // const handleSearch = () => {
+  //   if (surname.trim()) {
+  //     router.push(`/searchsurname?surname=${surname}`);
+  //   }
+  // };
+
   const handleSearch = () => {
-    if (surname.trim()) {
-      router.push(`/searchsurname?surname=${surname}`);
+  if (surname.trim()) {
+    // Agar cemetery id available hai toh uske basis pe redirect karo
+    if (id) {
+      router.push(`/searchsurname?surname=${encodeURIComponent(surname)}&cemetery_id=${id}`);
+    } else {
+      router.push(`/searchsurname?surname=${encodeURIComponent(surname)}`);
     }
-  };
+  }
+};
 
   return (
     <div className="page_shopping_list sop">
