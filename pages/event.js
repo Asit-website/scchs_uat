@@ -617,7 +617,7 @@ export default function events(pageProp) {
                                                         />
                                                     </Link>
                                                     <div className="card-content">
-                                                        <Link style={{ textDecoration: "none", color: "#000" }} href={`/eventdetail?id=${card?.slug}`}>
+                                                        <Link style={{ textDecoration: "none", color: "#000" }} href={`/eventdetail/${card?.id}/${card?.slug}`}>
                                                             <h3>{card.title}</h3>
                                                         </Link>
                                                         <p>{card.short_description}</p>
