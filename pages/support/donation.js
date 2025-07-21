@@ -301,15 +301,27 @@ export default function donation(pageProp) {
     // }, []);
 
 
-    useEffect(() => {
-        const mode = localStorage.getItem('donationFormMode');
-        if (mode === 'edit') {
+    // useEffect(() => {
+    //     const mode = localStorage.getItem('donationFormMode');
+    //     if (mode === 'edit') {
+    //         const saved = localStorage.getItem('donationFormData');
+    //         if (saved) {
+    //             setFormData(JSON.parse(saved));
+    //             setIsEditMode(true);
+    //         }
+    //         localStorage.removeItem('donationFormMode');
+    //     }
+    // }, []);
+
+      useEffect(() => {
+        // Jab bhi user login ho, uska saved donation data pre-fill ho
+        const storedUser = localStorage.getItem("scchs_User");
+        if (storedUser) {
             const saved = localStorage.getItem('donationFormData');
             if (saved) {
                 setFormData(JSON.parse(saved));
                 setIsEditMode(true);
             }
-            localStorage.removeItem('donationFormMode');
         }
     }, []);
 
