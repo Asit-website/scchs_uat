@@ -414,7 +414,7 @@ export default function eventdetail(pageProp) {
 
 
                     <div className="event_details_main">
-                        <Link style={{ textDecoration: "none" }} href={"/event"}><button className="event_det_back">Back</button></Link>
+                        <Link style={{ textDecoration: "none", marginBottom:"20px" }} href={"/event"}><button className="event_det_back">Back</button></Link>
                         <div className="event-page">
                             <div className="event-header">
                                 <div className="event-info">
